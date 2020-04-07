@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCatchesTable extends Migration
+class CreateQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class CreateCatchesTable extends Migration
      */
     public function up()
     {
-        Schema::create('catches', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('content');
             $table->string('answer');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')
             ->references('id')->on('users')
-            ->onDelete('cascade');
-            $table->bigInteger('target_nock_id')->unsigned()->nullable();
-            $table->foreign('target_nock_id')
-            ->references('id')->on('nocks')
-            ->onDelete('cascade');
+            ->onDelete('cascade')
+            ->nullable();
             $table->text('comments');
             $table->timestamps();
         });
@@ -36,6 +34,6 @@ class CreateCatchesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('catches');
+        Schema::dropIfExists('questions');
     }
 }

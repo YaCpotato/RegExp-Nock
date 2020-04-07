@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNocksTable extends Migration
+class CreateAnswersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,17 @@ class CreateNocksTable extends Migration
      */
     public function up()
     {
-        Schema::create('nocks', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->multiLineString('question');
             $table->string('answer');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')
             ->references('id')->on('users')
-            ->onDelete('cascade')
-            ->nullable();
+            ->onDelete('cascade');
+            $table->bigInteger('target_q_id')->unsigned()->nullable();
+            $table->foreign('target_q_id')
+            ->references('id')->on('questions')
+            ->onDelete('cascade');
             $table->text('comments');
             $table->timestamps();
         });
@@ -34,6 +36,6 @@ class CreateNocksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nocks');
+        Schema::dropIfExists('answers');
     }
 }
