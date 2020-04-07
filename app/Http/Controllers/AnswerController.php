@@ -13,7 +13,8 @@ class AnswerController extends Controller
      */
     public function index()
     {
-        //
+        $answers = Answer::all();
+        return view('answer/index', compact('answers'));
     }
 
     /**
@@ -23,18 +24,25 @@ class AnswerController extends Controller
      */
     public function create()
     {
-        //
+        return view('answer/create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $answer = new Answer;
+        $answer->answer = $request->name;
+        $answer->user_id = \Auth::user()->id;
+        $answer->target_q_id = Question::findOrFail($id)->id;
+        $answer->comments = $request->name;
+        $answer->save();
+        return redirect('answer/'.$answer->id);
     }
 
     /**
@@ -45,7 +53,8 @@ class AnswerController extends Controller
      */
     public function show($id)
     {
-        //
+        $answer = Answer::find($id);
+        return view('answer/detail', compact('answer'));
     }
 
     /**
@@ -56,7 +65,8 @@ class AnswerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $answer = Answer::find($id);
+        return view('answer/edit', compact('answer'));
     }
 
     /**
@@ -68,7 +78,11 @@ class AnswerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $answer = Answer::findOrFail($id);
+        $answer->answer = $request->name;
+        $answer->comments = $request->name;
+        $answer->save();
+        return view('answer/detail',compact('answer'));
     }
 
     /**
@@ -79,6 +93,10 @@ class AnswerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $answer = Answer::findOrFail($id);
+        $answer->delete();
+        
+        $answers = Answer::all();
+        return view('answer/index', compact('answers'));
     }
 }
