@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Question;
+use App\Comments;
 
 class AnswerController extends Controller
 {
@@ -26,13 +27,18 @@ class AnswerController extends Controller
      */
     public function store(Request $request, $id)
     {
+        $questionId = Question::findOrFail($id)->id;
+
         $answer = new Answer;
         $answer->answer = $request->name;
         $answer->user_id = \Auth::user()->id;
-        $answer->target_q_id = Question::findOrFail($id)->id;
+        $answer->target_q_id = $questionId;
         $answer->comments = $request->name;
         $answer->save();
-        return redirect('answer/'.$answer->id);
+
+        $question = Question::find($questionId);
+        $comments = Comment::query()->where('question_id',$questionId)->get();
+        return view('question/detail', compact('question','comments'));
     }
 
     /**
@@ -54,13 +60,16 @@ class AnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $questionId, $id)
     {
         $answer = Answer::findOrFail($id);
         $answer->answer = $request->name;
         $answer->comments = $request->name;
         $answer->save();
-        return view('answer/detail',compact('answer'));
+        
+        $question = Question::find($questionId);
+        $comments = Comment::query()->where('question_id',$questionId)->get();
+        return view('question/detail', compact('question','comments'));
     }
 
     /**
