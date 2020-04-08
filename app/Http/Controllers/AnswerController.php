@@ -8,17 +8,6 @@ use App\Question;
 class AnswerController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $answers = Answer::all();
-        return view('answer/index', compact('answers'));
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -44,18 +33,6 @@ class AnswerController extends Controller
         $answer->comments = $request->name;
         $answer->save();
         return redirect('answer/'.$answer->id);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $answer = Answer::find($id);
-        return view('answer/detail', compact('answer'));
     }
 
     /**

@@ -20,16 +20,6 @@ class CommentController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('comment/create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -41,38 +31,14 @@ class CommentController extends Controller
         $comment = new comment;
         $comment->comment = $request->comment;
         $comment->user_id = \Auth::user()->id;
-        $comment->question_id = Question::findOrFail($questionId)->id;
+        $comment->question_id = $questionId;
         $comment->save();
 
         $comments = Comment::query()->where('question_id',$questionId)->get();
         $question = Question::find($questionId);
         return view('question/detail', compact('question','comments'));
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $comment = Comment::find($id);
-        return view('comment/detail', compact('comment'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $comment = Comment::find($id);
-        return view('comment/edit', compact('comment'));
-    }
-
+    
     /**
      * Update the specified resource in storage.
      *
