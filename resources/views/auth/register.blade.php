@@ -20,7 +20,7 @@
                             <p class="control has-icons-left has-icons-right">
                                     <input id="name" class="input" type="text" class="input is-primary @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                                     <span class="icon is-small is-left">
-                                    <i class="fas fa-envelope"></i>
+                                    <i class="fas fa-user-alt"></i>
                                     </span>
                                 </p>
                                 @error('name')
@@ -71,7 +71,12 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <p class="control has-icons-left has-icons-right">
+                                    <input id="password-confirm" class="input is-primary @error('password') is-invalid @enderror" type="password" name="password_confirmation" value="{{ old('password') }}" required autocomplete="new-password">
+                                    <span class="icon is-small is-left">
+                                    <i class="fas fa-key"></i>
+                                    </span>
+                                </p>
                             </div>
                         </div>
 
