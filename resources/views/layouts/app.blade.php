@@ -30,18 +30,9 @@
             @auth
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
-                ユーザー
+                {{ $auths->name }}
                 </a>
                 <div class="navbar-dropdown">
-                <a class="navbar-item">
-                    About
-                </a>
-                <a class="navbar-item">
-                    Jobs
-                </a>
-                <a class="navbar-item">
-                    Contact
-                </a>
                 <hr class="navbar-divider">
                 <span class="navbar-item" href="{{ route('logout') }}">
                     <form action="{{ route('logout') }}" method="post">

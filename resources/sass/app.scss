@@ -7,3 +7,20 @@
 // Bootstrap
 
 @import '~bulma/bulma';
+
+.auth-card　{
+    padding: 16px;
+    border-radius: 15px;
+}
+
+.card-header {
+    height: 52px;
+    padding: 4px;
+    border-radius: 15px;
+    font-size: 28px;
+}
+
+.navbar-end {
+    position:absolute;
+    right: 32px;
+}

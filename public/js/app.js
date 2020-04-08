@@ -114,6 +114,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TheHeader"
 });
@@ -618,21 +654,6 @@ var staticRenderFns = [
       },
       [
         _c("div", { staticClass: "navbar-brand" }, [
-          _c(
-            "a",
-            { staticClass: "navbar-item", attrs: { href: "https://bulma.io" } },
-            [
-              _c("img", {
-                attrs: {
-                  src: "https://bulma.io/images/bulma-logo.png",
-                  alt: "Bulma: a modern CSS framework based on Flexbox",
-                  width: "112",
-                  height: "28"
-                }
-              })
-            ]
-          ),
-          _vm._v(" "),
           _c("a", { staticClass: "navbar-item", attrs: { href: "#" } }, [
             _c("h1", { staticClass: "title" }, [_vm._v("RegExpノックセンター")])
           ]),
@@ -640,11 +661,12 @@ var staticRenderFns = [
           _c(
             "a",
             {
-              staticClass: "navbar-burger",
+              staticClass: "navbar-burger burger",
               attrs: {
                 role: "button",
                 "aria-label": "menu",
-                "aria-expanded": "true"
+                "aria-expanded": "false",
+                "data-target": "navbarBasicExample"
               }
             },
             [
@@ -655,7 +677,59 @@ var staticRenderFns = [
               _c("span", { attrs: { "aria-hidden": "true" } })
             ]
           )
-        ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "navbar-menu", attrs: { id: "navbarBasicExample" } },
+          [
+            _c("div", { staticClass: "navbar-end" }, [
+              _c(
+                "div",
+                { staticClass: "navbar-item has-dropdown is-hoverable" },
+                [
+                  _c("a", { staticClass: "navbar-link" }, [
+                    _vm._v("\n          ユーザー\n        ")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "navbar-dropdown" }, [
+                    _c("a", { staticClass: "navbar-item" }, [
+                      _vm._v("\n            About\n          ")
+                    ]),
+                    _vm._v(" "),
+                    _c("a", { staticClass: "navbar-item" }, [
+                      _vm._v("\n            Jobs\n          ")
+                    ]),
+                    _vm._v(" "),
+                    _c("a", { staticClass: "navbar-item" }, [
+                      _vm._v("\n            Contact\n          ")
+                    ]),
+                    _vm._v(" "),
+                    _c("hr", { staticClass: "navbar-divider" }),
+                    _vm._v(" "),
+                    _c("a", { staticClass: "navbar-item" }, [
+                      _vm._v("\n            Report an issue\n          ")
+                    ])
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "navbar-end" }, [
+              _c("div", { staticClass: "navbar-item" }, [
+                _c("div", { staticClass: "buttons" }, [
+                  _c("a", { staticClass: "button is-primary" }, [
+                    _c("strong", [_vm._v("Sign up")])
+                  ]),
+                  _vm._v(" "),
+                  _c("a", { staticClass: "button is-light" }, [
+                    _vm._v("\n            Log in\n          ")
+                  ])
+                ])
+              ])
+            ])
+          ]
+        )
       ]
     )
   }
