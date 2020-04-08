@@ -14,13 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/question');
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/question', 'QuestionController@index')->name('question_index');
 Route::get('/question_create', 'QuestionController@create')->name('question_create')->middleware('auth');
 Route::post('/question_store', 'QuestionController@store')->name('question_store')->middleware('auth');
