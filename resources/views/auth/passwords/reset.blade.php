@@ -20,7 +20,7 @@
 
                                     <div class="col-md-6">
                                         <p class="control has-icons-left has-icons-right">
-                                            <input class="input" type="email" placeholder="Email" class="input is-primary @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                                            <input id="email" type="email" placeholder="Email" class="input is-primary @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
                                             <span class="icon is-small is-left">
                                             <i class="fas fa-envelope"></i>
                                             </span>
