@@ -15,7 +15,8 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::all();
-        return view('question/index', compact('questions'));
+        $auths = \Auth::user();
+        return view('question/index', compact('questions', 'auths'));
     }
 
     /**

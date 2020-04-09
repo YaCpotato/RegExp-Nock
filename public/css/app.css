@@ -12010,3 +12010,20 @@ label.panel-block:hover {
   padding: 3rem 1.5rem 6rem;
 }
 
+.auth-card {
+  padding: 16px;
+  border-radius: 15px;
+}
+
+.card-header {
+  height: 52px;
+  padding: 4px;
+  border-radius: 15px;
+  font-size: 28px;
+}
+
+.navbar-end {
+  position: absolute;
+  right: 32px;
+}
+

@@ -1,4 +1,4 @@
-@extends('question/layout')
+@extends('layouts.app')
 @section('content')
 <div class="container ops-main" id="app">
 <div class="row">
