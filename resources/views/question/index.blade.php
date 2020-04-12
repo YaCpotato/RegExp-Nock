@@ -1,25 +1,42 @@
 @extends('layouts.app')
 @section('content')
-<div class="container ops-main" id="app">
-<div class="row">
-  <div class="col-md-12">
-    <div style="margin:10px;"><a href="/question/create" class="btn btn-primary">新規作成</a></div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-9 col-md-offset-1" style="margin-right:30px;">
-    <table class="table text-center">
-      <tr>
-        <th class="text-center">question</th>
-      </tr>
-      @foreach($questions as $question)
-      <tr>
-        <td>
-          <span>{{ $question->content }}</span>
-        </td>
-        </tr>
-      @endforeach
-    </table>
-  </div>
+<div class="container">
+    <div class="columns">
+        <div class="column"><!--TBW--></div>
+        <div class="column is-half">
+            <div class="trend">
+            @foreach($questions as $question)
+            <div class="card">
+                <div class="card-content">
+                    <p class="title">
+                        {{ $question->content }}
+                    </p>
+                    <p class="subtitle">
+                    {{ $question->user->name }}
+                    </p>
+                </div>
+                <footer class="card-footer">
+                    <p class="card-footer-item">
+                    <span>
+                        View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
+                    </span>
+                    </p>
+                    <p class="card-footer-item">
+                    <span>
+                        Share on <a href="#">Facebook</a>
+                    </span>
+                    </p>
+                </footer>
+                </div>
+            @endforeach
+            </div>
+            <div class="newer">
+            @foreach($questions as $question)
+      
+            @endforeach
+            </div>
+        </div>
+        <div class="column"><!--TBW--></div>
+    </div>
 </div>
 @endsection
