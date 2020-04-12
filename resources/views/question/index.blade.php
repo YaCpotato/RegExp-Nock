@@ -12,6 +12,7 @@
             </div>
             <div class="trend">
             @foreach($questions as $question)
+            <a href="{{ url('question_detail/'.$question->id) }}">
             <div class="card question-card">
                 <div class="card-content">
                     <p class="title">
@@ -29,6 +30,7 @@
                     </p>
                 </footer>
                 </div>
+            </a>
             @endforeach
             </div>
             <div class="newer">

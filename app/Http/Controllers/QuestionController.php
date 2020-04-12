@@ -55,7 +55,8 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::find($id);
-        return view('question/detail', compact('question'));
+        $auths = \Auth::user();
+        return view('question/detail', compact('question', 'auths'));
     }
 
     /**
