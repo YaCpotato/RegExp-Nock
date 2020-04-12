@@ -12,7 +12,7 @@
             </div>
             <div class="trend">
             @foreach($questions as $question)
-            <div class="card">
+            <div class="card question-card">
                 <div class="card-content">
                     <p class="title">
                         {{ $question->content }}
