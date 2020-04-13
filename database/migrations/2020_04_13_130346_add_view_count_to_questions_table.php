@@ -14,7 +14,7 @@ class AddViewCountToQuestionsTable extends Migration
     public function up()
     {
         Schema::table('questions', function (Blueprint $table) {
-            //
+            $table->Integer('view_count')->default(0);
         });
     }
 
@@ -26,7 +26,7 @@ class AddViewCountToQuestionsTable extends Migration
     public function down()
     {
         Schema::table('questions', function (Blueprint $table) {
-            //
+            $table->dropColumn('view_count');
         });
     }
 }
