@@ -9,6 +9,7 @@
             <p class="subtitle">
             出題者：{{ $question->user->name }}
             </p>
+            <p>閲覧数： {{ $question->view_count }}</p>
             <div class="example-area">
                 <p class="subtitle">例題と解答</p>
                 <p class="example-string">

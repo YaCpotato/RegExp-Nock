@@ -55,6 +55,7 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::find($id);
+        $this->incrementViewCount($question);
         $auths = \Auth::user();
         return view('question/detail', compact('question', 'auths'));
     }
@@ -101,5 +102,11 @@ class QuestionController extends Controller
         
         $questions = Question::all();
         return view('question/index', compact('questions'));
+    }
+
+    private function incrementViewCount(Question $question)
+    {
+        $question->view_count += 1;
+        $question->save();
     }
 }
