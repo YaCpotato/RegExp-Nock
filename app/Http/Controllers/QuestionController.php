@@ -104,6 +104,18 @@ class QuestionController extends Controller
         return view('question/index', compact('questions'));
     }
 
+    /**
+     * 文字列と正規表現を受け取り、正規表現にマッチした部分を<strong>で囲んで返すメソッド
+     *
+     * @param  int  $id
+     * @return highlightedString
+     */
+    public function textHighlight(String $string, String $regExp)
+    {
+        preg_replace(`/(?<![<strong>])${string}(?![</strong>])/us`, `<strong>${string}</strong>`, $match);
+        return $match;
+    }
+
     private function incrementViewCount(Question $question)
     {
         $question->view_count += 1;
