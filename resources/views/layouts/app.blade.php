@@ -5,6 +5,10 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://kit.fontawesome.com/fff52c779c.js" crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.5.0.min.js"
+  integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+  crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
@@ -60,6 +64,7 @@
     </nav>
 </div>
 @yield('content')
-</body>
 <script src="{{ asset('js/app.js') }}"></script>
+
+</body>
 </html>

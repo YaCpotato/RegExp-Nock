@@ -12871,31 +12871,32 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
 Vue.component('the-header', __webpack_require__(/*! ./components/TheHeader.vue */ "./resources/js/components/TheHeader.vue")["default"]);
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
 var app = new Vue({
   el: '#app'
+});
+$('#btnsend').on('click', function () {
+  console.log('click');
+  $('#result').text('通信中...'); // Ajax通信を開始
+
+  $.ajax({
+    url: 'http://localhost:8000/highlight',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    type: 'POST',
+    data: {
+      base_string: '.*',
+      reg_exp: 'b'
+    },
+    dataType: 'json',
+    // フォーム要素の内容をハッシュ形式に変換
+    timeout: 5000
+  }).done(function (data) {
+    console.log(data);
+  }).fail(function () {// 通信失敗時の処理を記述
+  });
 });
 
 /***/ }),
