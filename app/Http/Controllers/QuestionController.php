@@ -116,12 +116,13 @@ class QuestionController extends Controller
         // $regExp = $request->reg_exp;
         $string = 'abcdefg';
         $regExp = '/[a-z]/';
-        // exit(var_dump($string, $regExp));
 
         $match_num = preg_match_all($regExp, $string, $matches);
-        exit(var_dump($match_num,$matches));
-        // preg_replace(`/(?<![<strong>])${string}(?![</strong>])/us`, `<strong>${string}</strong>`, $string);
-        preg_replace($regExp, `<strong>${match}</strong>`, $string);
+
+        foreach ($matches as $key => $match) {
+            preg_replace($regExp, `<strong>.$match[0][$key].</strong>`, $string);
+        }
+        
         return $string;
     }
 
