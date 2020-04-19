@@ -112,18 +112,11 @@ class QuestionController extends Controller
      */
     public function textHighlight(Request $request)
     {
-        // $string = $request->base_string;
-        // $regExp = $request->reg_exp;
-        $string = 'abcdefg';
-        $regExp = '/[a-z]/';
-
-        $match_num = preg_match_all($regExp, $string, $matches);
-
-        foreach ($matches as $key => $match) {
-            preg_replace($regExp, `<strong>.$match[0][$key].</strong>`, $string);
-        }
+        $string = $request->base_string;
+        $regExp = $request->reg_exp;
+        $result = preg_replace($regExp, '<strong>$0</strong>', $string);
         
-        return $string;
+        return $result;
     }
 
     private function incrementViewCount(Question $question)

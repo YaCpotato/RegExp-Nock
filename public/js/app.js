@@ -12887,8 +12887,8 @@ $('#btnsend').on('click', function () {
     },
     type: 'POST',
     data: {
-      base_string: '.*',
-      reg_exp: 'b'
+      base_string: '123-0099 ririeooo',
+      reg_exp: '/[0-9]{3}-[0-9]{4}/'
     },
     dataType: 'json',
     // フォーム要素の内容をハッシュ形式に変換
