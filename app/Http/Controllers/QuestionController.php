@@ -116,7 +116,7 @@ class QuestionController extends Controller
         $regExp = $request->reg_exp;
         $result = preg_replace($regExp, '<strong>$0</strong>', $string);
         
-        return $result;
+        return response($result, 200);
     }
 
     private function incrementViewCount(Question $question)

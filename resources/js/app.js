@@ -18,14 +18,12 @@ $('#btnsend').on('click', function(){
                 base_string: '123-0099 ririeooo',
                 reg_exp: '/[0-9]{3}-[0-9]{4}/',
             },
-        dataType: 'json',
+        dataType: 'text',
         // フォーム要素の内容をハッシュ形式に変換
         timeout: 5000,
+        success: function (result){
+            console.log(result)
+            $('#result').text(result);
+        }
     })
-    .done(function(data) {
-        console.log(data)
-    })
-    .fail(function() {
-        // 通信失敗時の処理を記述
-    });
     })
