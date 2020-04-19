@@ -1,5 +1,7 @@
 window.Vue = require('vue');
 Vue.component('the-header', require('./components/TheHeader.vue').default);
+Vue.component('solve-page', require('./components/SolvePage.vue').default);
+
 const app = new Vue({
     el: '#app',
 });
