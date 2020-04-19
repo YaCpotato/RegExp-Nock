@@ -3,6 +3,7 @@
         <div class="answer-area">
             <input type="text" v-model="baseString">
             <input type="text" v-model="regExp">
+            <button>{{ buttonValue }}</button>
         </div>
         <div class="check-area">
             <div v-html="checkAnswer"></div>
@@ -36,6 +37,13 @@ export default {
         }
     },
     computed:{
+        buttonValue() {
+            if (this.useMode === 'answer') {
+                return '解答する'
+            } else if (this.useMode === 'check') {
+                return 'チェックしてみる'
+            }
+        },
         checkAnswer() {
             return this.getRightAnswer(this.baseString, this.regExp) || ''
         }
