@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     props:{
         useMode:{
@@ -26,7 +28,11 @@ export default {
     },
     methods: {
         getRightAnswer() {
-            
+            axios.post('http://localhost:8000/highlight')
+            then((res)=>{
+                    return res.data
+                })
+                    .catch(error => console.log(error))
         }
     },
     computed:{
