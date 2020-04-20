@@ -1,10 +1,26 @@
 <template>
     <div id="app" class="container">
-        <div class="answer-area">
-            <input type="text" v-model="baseString">
-            <input type="text" v-model="regExp">
-            <button @click="getRightAnswer">{{ buttonValue }}</button>
+        <div class="field has-addons answer-area">
+            <p class="control">
+                <input class="input" type="text" v-model="baseString">
+            </p>
         </div>
+        <div class="field has-addons answer-area">
+            <p class="control">
+                <a class="button is-static">
+                /
+                </a>
+            </p>
+            <p class="control">
+                <input class="input" type="textarea" v-model="regExp">
+            </p>
+            <p class="control">
+                <a class="button is-static">
+                /
+                </a>
+            </p>
+        </div>
+        <button class="button is-info" @click="getRightAnswer">{{ buttonValue }}</button>
         <div class="check-area">
             <div v-html="checkAnswer"></div>
         </div>
@@ -37,7 +53,7 @@ export default {
         getRightAnswer() {
             axios.post('http://localhost:8000/highlight',{
                 base_string: this.baseString,
-                reg_exp: this.regExp
+                reg_exp: `/${this.regExp}/`
             })
             .then((res)=>{
                 this.checkAnswer = res.data

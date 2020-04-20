@@ -1923,6 +1923,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
@@ -1949,7 +1965,7 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://localhost:8000/highlight', {
         base_string: this.baseString,
-        reg_exp: this.regExp
+        reg_exp: "/".concat(this.regExp, "/")
       }).then(function (res) {
         _this.checkAnswer = res.data;
         console.log(_this.checkAnswer);
@@ -32882,60 +32898,95 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container", attrs: { id: "app" } }, [
-    _c("div", { staticClass: "answer-area" }, [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.baseString,
-            expression: "baseString"
-          }
-        ],
-        attrs: { type: "text" },
-        domProps: { value: _vm.baseString },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+    _c("div", { staticClass: "field has-addons answer-area" }, [
+      _c("p", { staticClass: "control" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.baseString,
+              expression: "baseString"
             }
-            _vm.baseString = $event.target.value
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.regExp,
-            expression: "regExp"
-          }
-        ],
-        attrs: { type: "text" },
-        domProps: { value: _vm.regExp },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+          ],
+          staticClass: "input",
+          attrs: { type: "text" },
+          domProps: { value: _vm.baseString },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.baseString = $event.target.value
             }
-            _vm.regExp = $event.target.value
           }
-        }
-      }),
-      _vm._v(" "),
-      _c("button", { on: { click: _vm.getRightAnswer } }, [
-        _vm._v(_vm._s(_vm.buttonValue))
+        })
       ])
     ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "field has-addons answer-area" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("p", { staticClass: "control" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.regExp,
+              expression: "regExp"
+            }
+          ],
+          staticClass: "input",
+          attrs: { type: "textarea" },
+          domProps: { value: _vm.regExp },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.regExp = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _vm._m(1)
+    ]),
+    _vm._v(" "),
+    _c(
+      "button",
+      { staticClass: "button is-info", on: { click: _vm.getRightAnswer } },
+      [_vm._v(_vm._s(_vm.buttonValue))]
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "check-area" }, [
       _c("div", { domProps: { innerHTML: _vm._s(_vm.checkAnswer) } })
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "control" }, [
+      _c("a", { staticClass: "button is-static" }, [
+        _vm._v("\n            /\n            ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "control" }, [
+      _c("a", { staticClass: "button is-static" }, [
+        _vm._v("\n            /\n            ")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
