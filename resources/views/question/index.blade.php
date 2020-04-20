@@ -11,7 +11,7 @@
                 <p>
                     RegExpノックセンターへようこそ<br>正規表現に関する日常生活での質問を投げたり、問題として出したり、<br>腕試しで挑戦したりできるよ！
                 </p>
-                <button class="button is-primary" style="margin: 8px;">問題を出す</button>
+                <a class="button is-primary" style="margin: 8px;" href="{{ url('question_create') }}">問題を出す</a>
             </div>
             <div class="trend">
             @foreach($questions as $question)
@@ -42,10 +42,6 @@
             @endforeach
             </div>
         </div>
-        <div id="app" class="column">
-            <solvepage></solvepage>
-        </div>
-        <script src="{{ mix('js/app.js') }}"></script>
     </div>
 </div>
 @endsection

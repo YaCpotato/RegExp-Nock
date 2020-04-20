@@ -26,7 +26,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('question/create');
+        $auths = \Auth::user();
+        return view('question/create',compact('auths'));
     }
 
     /**
