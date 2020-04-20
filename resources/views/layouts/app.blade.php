@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-<div id="app">
+<div class="container">
     <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="#">
@@ -64,7 +64,6 @@
     </nav>
 </div>
 @yield('content')
-<script src="{{ asset('js/app.js') }}"></script>
 
 </body>
 </html>

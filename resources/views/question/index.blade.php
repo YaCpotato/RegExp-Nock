@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-
     <div class="columns">
         <div class="column"><!--TBW-->
         <button id="btnsend">送信</button>
@@ -43,7 +42,10 @@
             @endforeach
             </div>
         </div>
-        <div class="column"><!--TBW--></div>
+        <div id="app" class="column">
+            <solvepage></solvepage>
+        </div>
+        <script src="{{ mix('js/app.js') }}"></script>
     </div>
 </div>
 @endsection
