@@ -1,3 +1,4 @@
+require('./bootstrap');
 window.Vue = require('vue');
 Vue.component('the-header', require('./components/TheHeader.vue').default);
 Vue.component('solve-page', require('./components/SolvePage.vue').default);

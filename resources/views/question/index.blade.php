@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+
     <div class="columns">
         <div class="column"><!--TBW-->
         <button id="btnsend">送信</button>
