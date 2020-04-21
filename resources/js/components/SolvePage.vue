@@ -1,5 +1,6 @@
 <template>
     <div id="app" class="container">
+    <div v-if="useMode === 'check'">
         <div class="content is-medium">
             <h2>Let me see your Question!</h2>
             <p>問題が出題できます。答えがわかっていたら、ぜひ正解とできるかチェックしてみましょう！</p>
@@ -14,6 +15,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <div class="field">
             <label class="label is-large">正規表現</label>
             <div class="field-body">
@@ -34,21 +36,23 @@
                 </div>
             </div>
         </div>
-        <button class="button is-info" @click="getRightAnswer">{{ buttonValue }}</button>
-        <div class="field check-area">
-            <div v-html="checkAnswer"></div>
-        </div>
-        <div class="field">
-            <label class="label is-large">補足説明（空欄可）　〜ヒント等あったら書いてみましょう！〜</label>
-            <div class="field-body">
-                <div class="field">
-                    <p class="control">
-                        <textarea class="textarea" v-model="comments" rows="2"></textarea>
-                    </p>
+        <div v-if="useMode === 'check'">
+            <button class="button is-info" @click="getRightAnswer">チェックしてみる</button>
+            <div class="field check-area">
+                <div v-html="checkAnswer"></div>
+            </div>
+            <div class="field">
+                <label class="label is-large">補足説明（空欄可）　〜ヒント等あったら書いてみましょう！〜</label>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <textarea class="textarea" v-model="comments" rows="2"></textarea>
+                        </p>
+                    </div>
                 </div>
             </div>
+            <button class="button is-primary" @click="addQuestion">出題する</button>
         </div>
-        <button class="button is-primary" @click="addQuestion">{{ buttonValue }}</button>
     </div>
 </template>
 
@@ -98,15 +102,6 @@ export default {
                 return;
                 })
                 .catch(error => console.log(error))
-        }
-    },
-    computed:{
-        buttonValue() {
-            if (this.useMode === 'answer') {
-                return '解答する'
-            } else if (this.useMode === 'check') {
-                return 'チェックしてみる'
-            }
         }
     }
 }

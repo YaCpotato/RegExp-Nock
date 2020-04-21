@@ -1964,6 +1964,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
@@ -2001,27 +2005,15 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
       });
     },
     addQuestion: function addQuestion() {
-      var _this2 = this;
-
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://localhost:8000/question', {
         content: this.baseString,
-        answer: "/".concat(this.regExp, "/")
+        answer: "/".concat(this.regExp, "/"),
+        comments: this.comments
       }).then(function (res) {
-        _this2.checkAnswer = res.data;
-        console.log(_this2.checkAnswer);
         return;
       })["catch"](function (error) {
         return console.log(error);
       });
-    }
-  },
-  computed: {
-    buttonValue: function buttonValue() {
-      if (this.useMode === 'answer') {
-        return '解答する';
-      } else if (this.useMode === 'check') {
-        return 'チェックしてみる';
-      }
     }
   }
 });
@@ -32938,39 +32930,45 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container", attrs: { id: "app" } }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label is-large" }, [_vm._v("対象文字列")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "field-body" }, [
-        _c("div", { staticClass: "field" }, [
-          _c("p", { staticClass: "control" }, [
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.baseString,
-                  expression: "baseString"
-                }
-              ],
-              staticClass: "textarea",
-              attrs: { rows: "2" },
-              domProps: { value: _vm.baseString },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.baseString = $event.target.value
-                }
-              }
-            })
+    _vm.useMode === "check"
+      ? _c("div", [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "field" }, [
+            _c("label", { staticClass: "label is-large" }, [
+              _vm._v("対象文字列")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field-body" }, [
+              _c("div", { staticClass: "field" }, [
+                _c("p", { staticClass: "control" }, [
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.baseString,
+                        expression: "baseString"
+                      }
+                    ],
+                    staticClass: "textarea",
+                    attrs: { rows: "2" },
+                    domProps: { value: _vm.baseString },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.baseString = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ])
+            ])
           ])
         ])
-      ])
-    ]),
+      : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "field" }, [
       _c("label", { staticClass: "label is-large" }, [_vm._v("正規表現")]),
@@ -33008,55 +33006,67 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c(
-      "button",
-      { staticClass: "button is-info", on: { click: _vm.getRightAnswer } },
-      [_vm._v(_vm._s(_vm.buttonValue))]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "field check-area" }, [
-      _c("div", { domProps: { innerHTML: _vm._s(_vm.checkAnswer) } })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label is-large" }, [
-        _vm._v("補足説明（空欄可）　〜ヒント等あったら書いてみましょう！〜")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "field-body" }, [
-        _c("div", { staticClass: "field" }, [
-          _c("p", { staticClass: "control" }, [
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.comments,
-                  expression: "comments"
-                }
-              ],
-              staticClass: "textarea",
-              attrs: { rows: "2" },
-              domProps: { value: _vm.comments },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.comments = $event.target.value
-                }
-              }
-            })
-          ])
+    _vm.useMode === "check"
+      ? _c("div", [
+          _c(
+            "button",
+            {
+              staticClass: "button is-info",
+              on: { click: _vm.getRightAnswer }
+            },
+            [_vm._v("チェックしてみる")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "field check-area" }, [
+            _c("div", { domProps: { innerHTML: _vm._s(_vm.checkAnswer) } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "field" }, [
+            _c("label", { staticClass: "label is-large" }, [
+              _vm._v(
+                "補足説明（空欄可）　〜ヒント等あったら書いてみましょう！〜"
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field-body" }, [
+              _c("div", { staticClass: "field" }, [
+                _c("p", { staticClass: "control" }, [
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.comments,
+                        expression: "comments"
+                      }
+                    ],
+                    staticClass: "textarea",
+                    attrs: { rows: "2" },
+                    domProps: { value: _vm.comments },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.comments = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button is-primary",
+              on: { click: _vm.addQuestion }
+            },
+            [_vm._v("出題する")]
+          )
         ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "button",
-      { staticClass: "button is-primary", on: { click: _vm.addQuestion } },
-      [_vm._v(_vm._s(_vm.buttonValue))]
-    )
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
