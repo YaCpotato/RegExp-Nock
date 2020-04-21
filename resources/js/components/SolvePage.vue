@@ -43,12 +43,12 @@
             <div class="field-body">
                 <div class="field">
                     <p class="control">
-                        <textarea class="textarea" v-model="baseString" rows="2"></textarea>
+                        <textarea class="textarea" v-model="comments" rows="2"></textarea>
                     </p>
                 </div>
             </div>
         </div>
-        <button class="button is-primary" @click="getRightAnswer">{{ buttonValue }}</button>
+        <button class="button is-primary" @click="addQuestion">{{ buttonValue }}</button>
     </div>
 </template>
 
@@ -71,7 +71,8 @@ export default {
         return{
             baseString:'',
             regExp:'',
-            checkAnswer:''
+            checkAnswer:'',
+            comments:''
         }
     },
     methods: {
@@ -83,6 +84,17 @@ export default {
             .then((res)=>{
                 this.checkAnswer = res.data
                 console.log(this.checkAnswer)
+                return;
+                })
+                .catch(error => console.log(error))
+        },
+        addQuestion() {
+            axios.post('http://localhost:8000/question',{
+                content: this.baseString,
+                answer: `/${this.regExp}/`,
+                comments: this.comments
+            })
+            .then((res)=>{
                 return;
                 })
                 .catch(error => console.log(error))

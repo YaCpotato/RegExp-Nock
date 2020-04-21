@@ -12036,7 +12036,11 @@ label.panel-block:hover {
   right: 32px;
 }
 
-.field {
-  margin: 1rem;
+.field-body .field {
+  margin-bottom: 2rem;
+}
+
+.label:not(:last-child) {
+  margin-bottom: 0;
 }
 

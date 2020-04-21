@@ -1981,7 +1981,8 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
     return {
       baseString: '',
       regExp: '',
-      checkAnswer: ''
+      checkAnswer: '',
+      comments: ''
     };
   },
   methods: {
@@ -1994,6 +1995,20 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
       }).then(function (res) {
         _this.checkAnswer = res.data;
         console.log(_this.checkAnswer);
+        return;
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+    },
+    addQuestion: function addQuestion() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://localhost:8000/question', {
+        content: this.baseString,
+        answer: "/".concat(this.regExp, "/")
+      }).then(function (res) {
+        _this2.checkAnswer = res.data;
+        console.log(_this2.checkAnswer);
         return;
       })["catch"](function (error) {
         return console.log(error);
@@ -33016,19 +33031,19 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.baseString,
-                  expression: "baseString"
+                  value: _vm.comments,
+                  expression: "comments"
                 }
               ],
               staticClass: "textarea",
               attrs: { rows: "2" },
-              domProps: { value: _vm.baseString },
+              domProps: { value: _vm.comments },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.baseString = $event.target.value
+                  _vm.comments = $event.target.value
                 }
               }
             })
@@ -33039,7 +33054,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "button",
-      { staticClass: "button is-primary", on: { click: _vm.getRightAnswer } },
+      { staticClass: "button is-primary", on: { click: _vm.addQuestion } },
       [_vm._v(_vm._s(_vm.buttonValue))]
     )
   ])
