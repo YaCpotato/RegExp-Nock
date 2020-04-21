@@ -2005,7 +2005,7 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
       });
     },
     addQuestion: function addQuestion() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://localhost:8000/question', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://localhost:8000/question_store', {
         content: this.baseString,
         answer: "/".concat(this.regExp, "/"),
         comments: this.comments

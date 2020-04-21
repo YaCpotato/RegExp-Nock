@@ -39,9 +39,9 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $question = new question;
-        $question->content = $request->name;
-        $question->answer = $request->name;
-        $question->comments = $request->name;
+        $question->content = $request->content;
+        $question->answer = $request->answer;
+        $question->comments = $request->comments;
         $question->user_id = \Auth::user()->id;
         $question->save();
         return redirect('question/'.$question->id);
