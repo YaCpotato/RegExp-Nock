@@ -1939,6 +1939,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
@@ -32898,60 +32913,73 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container", attrs: { id: "app" } }, [
-    _c("div", { staticClass: "field has-addons answer-area" }, [
-      _c("p", { staticClass: "control" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.baseString,
-              expression: "baseString"
-            }
-          ],
-          staticClass: "input",
-          attrs: { type: "text" },
-          domProps: { value: _vm.baseString },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "field" }, [
+      _c("label", { staticClass: "label" }, [_vm._v("対象文字列")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field-body" }, [
+        _c("div", { staticClass: "field" }, [
+          _c("p", { staticClass: "control" }, [
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.baseString,
+                  expression: "baseString"
+                }
+              ],
+              staticClass: "textarea",
+              domProps: { value: _vm.baseString },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.baseString = $event.target.value
+                }
               }
-              _vm.baseString = $event.target.value
-            }
-          }
-        })
+            })
+          ])
+        ])
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "field has-addons answer-area" }, [
-      _vm._m(0),
+    _c("div", { staticClass: "field" }, [
+      _c("label", { staticClass: "label" }, [_vm._v("正規表現")]),
       _vm._v(" "),
-      _c("p", { staticClass: "control" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.regExp,
-              expression: "regExp"
-            }
-          ],
-          staticClass: "input",
-          attrs: { type: "textarea" },
-          domProps: { value: _vm.regExp },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+      _c("div", { staticClass: "field-body" }, [
+        _c("div", { staticClass: "field has-addons answer-area" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("p", { staticClass: "control is-expanded" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.regExp,
+                  expression: "regExp"
+                }
+              ],
+              staticClass: "input",
+              attrs: { type: "textarea" },
+              domProps: { value: _vm.regExp },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.regExp = $event.target.value
+                }
               }
-              _vm.regExp = $event.target.value
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _vm._m(1)
+            })
+          ]),
+          _vm._v(" "),
+          _vm._m(2)
+        ])
+      ])
     ]),
     _vm._v(" "),
     _c(
@@ -32970,9 +32998,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "control" }, [
-      _c("a", { staticClass: "button is-static" }, [
-        _vm._v("\n            /\n            ")
+    return _c("div", { staticClass: "content is-medium" }, [
+      _c("h2", [_vm._v("Let me see your Question!")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "問題が出題できます。答えがわかっていたら、ぜひ正解とできるかチェックしてみましょう！"
+        )
       ])
     ])
   },
@@ -32982,7 +33014,17 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("p", { staticClass: "control" }, [
       _c("a", { staticClass: "button is-static" }, [
-        _vm._v("\n            /\n            ")
+        _vm._v("\n                    /\n                    ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "control" }, [
+      _c("a", { staticClass: "button is-static" }, [
+        _vm._v("\n                    /\n                    ")
       ])
     ])
   }
@@ -45280,29 +45322,8 @@ Vue.component('theheader', __webpack_require__(/*! ./components/TheHeader.vue */
 Vue.component('solvepage', __webpack_require__(/*! ./components/SolvePage.vue */ "./resources/js/components/SolvePage.vue")["default"]);
 var app = new Vue({
   el: '#app'
-}); // $('#btnsend').on('click', function(){
-//     console.log('click')
-//     $('#result').text('通信中...');
-//     // Ajax通信を開始
-//     $.ajax({
-//         url:'http://localhost:8000/highlight',
-//         headers: {
-//             　　　'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//             　　},
-//             type:'POST',
-//             data:{
-//                 base_string: '123-0099 ririeooo',
-//                 reg_exp: '/[0-9]{3}-[0-9]{4}/',
-//             },
-//         dataType: 'text',
-//         // フォーム要素の内容をハッシュ形式に変換
-//         timeout: 5000,
-//         success: function (result){
-//             console.log(result)
-//             $('#result').text(result);
-//         }
-//     })
-// })
+}); // '123-0099 ririeooo',
+// '/[0-9]{3}-[0-9]{4}/',
 
 /***/ }),
 
