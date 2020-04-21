@@ -12036,3 +12036,7 @@ label.panel-block:hover {
   right: 32px;
 }
 
+.field {
+  margin: 1rem;
+}
+

@@ -1954,6 +1954,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
@@ -32916,7 +32926,7 @@ var render = function() {
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label" }, [_vm._v("対象文字列")]),
+      _c("label", { staticClass: "label is-large" }, [_vm._v("対象文字列")]),
       _vm._v(" "),
       _c("div", { staticClass: "field-body" }, [
         _c("div", { staticClass: "field" }, [
@@ -32931,6 +32941,7 @@ var render = function() {
                 }
               ],
               staticClass: "textarea",
+              attrs: { rows: "2" },
               domProps: { value: _vm.baseString },
               on: {
                 input: function($event) {
@@ -32947,7 +32958,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label" }, [_vm._v("正規表現")]),
+      _c("label", { staticClass: "label is-large" }, [_vm._v("正規表現")]),
       _vm._v(" "),
       _c("div", { staticClass: "field-body" }, [
         _c("div", { staticClass: "field has-addons answer-area" }, [
@@ -32988,9 +32999,49 @@ var render = function() {
       [_vm._v(_vm._s(_vm.buttonValue))]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "check-area" }, [
+    _c("div", { staticClass: "field check-area" }, [
       _c("div", { domProps: { innerHTML: _vm._s(_vm.checkAnswer) } })
-    ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "field" }, [
+      _c("label", { staticClass: "label is-large" }, [
+        _vm._v("補足説明（空欄可）　〜ヒント等あったら書いてみましょう！〜")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field-body" }, [
+        _c("div", { staticClass: "field" }, [
+          _c("p", { staticClass: "control" }, [
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.baseString,
+                  expression: "baseString"
+                }
+              ],
+              staticClass: "textarea",
+              attrs: { rows: "2" },
+              domProps: { value: _vm.baseString },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.baseString = $event.target.value
+                }
+              }
+            })
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "button",
+      { staticClass: "button is-primary", on: { click: _vm.getRightAnswer } },
+      [_vm._v(_vm._s(_vm.buttonValue))]
+    )
   ])
 }
 var staticRenderFns = [

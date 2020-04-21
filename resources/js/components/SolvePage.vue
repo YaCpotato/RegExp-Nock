@@ -5,17 +5,17 @@
             <p>問題が出題できます。答えがわかっていたら、ぜひ正解とできるかチェックしてみましょう！</p>
         </div>
         <div class="field">
-            <label class="label">対象文字列</label>
+            <label class="label is-large">対象文字列</label>
             <div class="field-body">
                 <div class="field">
                     <p class="control">
-                        <textarea class="textarea" v-model="baseString"></textarea>
+                        <textarea class="textarea" v-model="baseString" rows="2"></textarea>
                     </p>
                 </div>
             </div>
         </div>
         <div class="field">
-            <label class="label">正規表現</label>
+            <label class="label is-large">正規表現</label>
             <div class="field-body">
                 <div class="field has-addons answer-area">
                     <p class="control">
@@ -33,12 +33,22 @@
                     </p>
                 </div>
             </div>
-            
         </div>
         <button class="button is-info" @click="getRightAnswer">{{ buttonValue }}</button>
-        <div class="check-area">
+        <div class="field check-area">
             <div v-html="checkAnswer"></div>
         </div>
+        <div class="field">
+            <label class="label is-large">補足説明（空欄可）　〜ヒント等あったら書いてみましょう！〜</label>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control">
+                        <textarea class="textarea" v-model="baseString" rows="2"></textarea>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <button class="button is-primary" @click="getRightAnswer">{{ buttonValue }}</button>
     </div>
 </template>
 
