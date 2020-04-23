@@ -39,6 +39,7 @@
             @endforeach
             </div>
         </div>
+        <div class="column"><!--TBW--></div>
     </div>
 </div>
 @endsection
