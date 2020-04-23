@@ -45,7 +45,7 @@ class QuestionController extends Controller
         $question->user_id = \Auth::user()->id;
         $question->save();
         $auths = \Auth::user();
-        return view('question_detail/'.$question->id, compact('question', 'auths'));
+        return view('question/'.$question->id, compact('question', 'auths'));
     }
 
     /**
@@ -59,7 +59,7 @@ class QuestionController extends Controller
         $question = Question::find($id);
         $this->incrementViewCount($question);
         $auths = \Auth::user();
-        return view('question_detail/'.$id, compact('question', 'auths'));
+        return view('question/'.$id, compact('question', 'auths'));
     }
 
     /**
@@ -71,7 +71,7 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $question = Question::find($id);
-        return view('question_edit/', compact('question'));
+        return view('question/edit', compact('question'));
     }
 
     /**
@@ -88,7 +88,7 @@ class QuestionController extends Controller
         $question->answer = $request->answer;
         $question->comments = $request->comments;
         $question->save();
-        return view('question_detail/'.$id,compact('question'));
+        return view('question/'.$id,compact('question'));
     }
 
     /**
