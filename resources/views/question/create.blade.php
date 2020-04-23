@@ -7,6 +7,7 @@
             <p>問題が出題できます。答えがわかっていたら、ぜひ正解とできるかチェックしてみましょう！</p>
         </div>
     <form action="{{ url('question_store') }}" method="POST">
+        @csrf
         <div class="field">
             <label class="label is-large">対象文字列</label>
             <div class="field-body">
