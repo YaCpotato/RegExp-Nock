@@ -2,10 +2,7 @@
 @section('content')
 <div class="container">
     <div class="columns">
-        <div class="column"><!--TBW-->
-        <button id="btnsend">送信</button>
-        <div id="result"></div>
-        </div>
+        <div class="column"><!--TBW--></div>
         <div class="column is-half">
             <div class="intro-and-button-area box has-text-centered">
                 <p>
