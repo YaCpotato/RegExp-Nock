@@ -1,21 +1,20 @@
 <template>
     <div id="app" class="container">
-    <div v-if="useMode === 'check'">
         <div class="content is-medium">
             <h2>Let me see your Question!</h2>
             <p>問題が出題できます。答えがわかっていたら、ぜひ正解とできるかチェックしてみましょう！</p>
         </div>
+    <form action="/question_store" method="POST">
         <div class="field">
             <label class="label is-large">対象文字列</label>
             <div class="field-body">
                 <div class="field">
                     <p class="control">
-                        <textarea class="textarea" v-model="baseString" rows="2"></textarea>
+                        <textarea class="textarea" v-model="baseString" name = "content" rows="2"></textarea>
                     </p>
                 </div>
             </div>
         </div>
-    </div>
         <div class="field">
             <label class="label is-large">正規表現</label>
             <div class="field-body">
@@ -26,7 +25,7 @@
                         </a>
                     </p>
                     <p class="control is-expanded">
-                        <input class="input" type="textarea" v-model="regExp">
+                        <input class="input" type="textarea" v-model="regExp" name = "answer">
                     </p>
                     <p class="control">
                         <a class="button is-static">
@@ -36,23 +35,22 @@
                 </div>
             </div>
         </div>
-        <div v-if="useMode === 'check'">
-            <button class="button is-info" @click="getRightAnswer">チェックしてみる</button>
-            <div class="field check-area">
-                <div v-html="checkAnswer"></div>
-            </div>
-            <div class="field">
-                <label class="label is-large">補足説明（空欄可）　〜ヒント等あったら書いてみましょう！〜</label>
-                <div class="field-body">
-                    <div class="field">
-                        <p class="control">
-                            <textarea class="textarea" v-model="comments" rows="2"></textarea>
-                        </p>
-                    </div>
+        <button type="button" class="button is-info" @click="getRightAnswer">チェックしてみる</button>
+        <div class="field check-area">
+            <div v-html="checkAnswer"></div>
+        </div>
+        <div class="field">
+            <label class="label is-large">補足説明（空欄可）　〜ヒント等あったら書いてみましょう！〜</label>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control">
+                        <textarea class="textarea" v-model="comments" name = "comments" rows="2"></textarea>
+                    </p>
                 </div>
             </div>
-            <button class="button is-primary" @click="addQuestion">出題する</button>
         </div>
+        <button type="submit" class="button is-primary">出題する</button>
+    </form>
     </div>
 </template>
 
@@ -88,17 +86,6 @@ export default {
             .then((res)=>{
                 this.checkAnswer = res.data
                 console.log(this.checkAnswer)
-                return;
-                })
-                .catch(error => console.log(error))
-        },
-        addQuestion() {
-            axios.post('http://127.0.0.1:8000/question_store',{
-                content: this.baseString,
-                answer: `/${this.regExp}/`,
-                comments: this.comments
-            })
-            .then((res)=>{
                 return;
                 })
                 .catch(error => console.log(error))

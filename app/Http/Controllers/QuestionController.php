@@ -45,7 +45,7 @@ class QuestionController extends Controller
         $question->user_id = \Auth::user()->id;
         $question->save();
         $auths = \Auth::user();
-        return view('question_detail/',$question->id, compact('question', 'auths'));
+        return view('question/detail', compact('question', 'auths'));
     }
 
     /**
@@ -59,7 +59,7 @@ class QuestionController extends Controller
         $question = Question::find($id);
         $this->incrementViewCount($question);
         $auths = \Auth::user();
-        return view('question_detail/'.$id, compact('question', 'auths'));
+        return view('question/detail', compact('question', 'auths'));
     }
 
     /**
