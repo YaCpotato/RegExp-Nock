@@ -1993,7 +1993,7 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
     getRightAnswer: function getRightAnswer() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://localhost:8000/highlight', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/highlight', {
         base_string: this.baseString,
         reg_exp: "/".concat(this.regExp, "/")
       }).then(function (res) {
@@ -2005,7 +2005,7 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
       });
     },
     addQuestion: function addQuestion() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://localhost:8000/question_store', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/question_store', {
         content: this.baseString,
         answer: "/".concat(this.regExp, "/"),
         comments: this.comments

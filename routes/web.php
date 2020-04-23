@@ -18,8 +18,14 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::resource('/question', 'QuestionController')->middleware('auth');
+Route::get('/question', 'QuestionController@index')->name('question_index');
+Route::get('/question_create', 'QuestionController@create')->name('question_create')->middleware('auth');
+Route::post('/question_store', 'QuestionController@store')->name('question_store')->middleware('auth');
 Route::post('/highlight', 'QuestionController@textHighlight')->name('highlight');
+Route::get('/question_detail/{id}', 'QuestionController@show')->name('question_show');
+Route::get('/question_edit', 'QuestionController@edit')->name('question_edit')->middleware('auth');
+Route::put('/question_update', 'QuestionController@update')->name('question_update')->middleware('auth');
+Route::delete('/question_destroy', 'QuestionController@destroy')->name('question_destroy')->middleware('auth');
 
 Route::get('/answer_create', 'AnswerController@create')->name('answer_create')->middleware('auth');
 Route::post('/answer_store', 'AnswerController@store')->name('answer_store')->middleware('auth');

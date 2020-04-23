@@ -81,7 +81,7 @@ export default {
     },
     methods: {
         getRightAnswer() {
-            axios.post('http://localhost:8000/highlight',{
+            axios.post('http://127.0.0.1:8000/highlight',{
                 base_string: this.baseString,
                 reg_exp: `/${this.regExp}/`
             })
@@ -93,7 +93,7 @@ export default {
                 .catch(error => console.log(error))
         },
         addQuestion() {
-            axios.post('http://localhost:8000/question_store',{
+            axios.post('http://127.0.0.1:8000/question_store',{
                 content: this.baseString,
                 answer: `/${this.regExp}/`,
                 comments: this.comments

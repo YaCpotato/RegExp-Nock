@@ -11,11 +11,11 @@
                 <p>
                     RegExpノックセンターへようこそ<br>正規表現に関する日常生活での質問を投げたり、問題として出したり、<br>腕試しで挑戦したりできるよ！
                 </p>
-                <a class="button is-primary" style="margin: 8px;" href="{{ url('question/create') }}">問題を出す</a>
+                <a class="button is-primary" style="margin: 8px;" href="{{ url('question_create') }}">問題を出す</a>
             </div>
             <div class="trend">
             @foreach($questions as $question)
-            <a href="{{ url('question/'.$question->id) }}">
+            <a href="{{ url('question_detail',$question->id) }}">
             <div class="card question-card">
                 <div class="card-content">
                     <p class="title">
