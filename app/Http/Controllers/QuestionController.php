@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Question;
+use App\Answer;
+use App\Comment;
+use DB;
 
 class QuestionController extends Controller
 {
@@ -15,6 +18,29 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::with('user')->get();
+        $questions = DB::select("
+            WITH how_comments as (
+                SELECT 
+                    question_id as hc_question_id, 
+                    COUNT(*) as how_comments
+                FROM comments
+                GROUP BY comments.question_id
+            ),
+            how_answers as (
+                SELECT 
+                    answers.target_q_id,
+                    COUNT(*) as how_answers
+                FROM answers
+                GROUP BY answers.target_q_id
+            )
+            SELECT *
+            FROM questions
+            LEFT OUTER JOIN how_comments
+            ON questions.id = how_comments.hc_question_id
+            LEFT OUTER JOIN how_answers
+            ON questions.id = how_answers.target_q_id
+        ");
+        exit(var_dump($questions));
         $auths = \Auth::user();
         return view('question/index', compact('questions', 'auths'));
     }

@@ -19,7 +19,7 @@
                         {{ $question->content }}
                     </p>
                     <p class="subtitle">
-                    {{ $question->user->name }}
+                    {{ $question->user_name }}
                     </p>
                 </div>
                 <footer class="card-footer">
@@ -27,6 +27,10 @@
                     <span>
                         {{ $question->created_at }}
                     </span>
+                    </p>
+                    <p class="card-footer-item">
+                    <span><i class="far fa-comments"></i>NUMBER</span>
+                    <span><i class="fas fa-baseball-ball"></i>NUMBER</span>
                     </p>
                 </footer>
                 </div>
