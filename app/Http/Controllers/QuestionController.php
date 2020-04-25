@@ -22,23 +22,39 @@ class QuestionController extends Controller
             WITH how_comments as (
                 SELECT 
                     question_id as hc_question_id, 
-                    COUNT(*) as how_comments
+                    COUNT(*) as comments_count
                 FROM comments
                 GROUP BY comments.question_id
             ),
             how_answers as (
                 SELECT 
-                    answers.target_q_id,
-                    COUNT(*) as how_answers
+                    answers.target_q_id as hw_q_id,
+                    COUNT(*) as answers_count
                 FROM answers
                 GROUP BY answers.target_q_id
+            ),
+            user_name as (
+                SELECT 
+                    users.id as id,
+                    users.name as name
+                FROM users
             )
-            SELECT *
+            SELECT  questions.id,
+                    questions.content,
+                    user_name.name,
+                    questions.answer,
+                    questions.created_at,
+                    questions.updated_at,
+                    questions.view_count,
+                    IFNULL(how_comments.comments_count, 0) as comments_count,
+                    IFNULL(how_answers.answers_count, 0) as answers_count
             FROM questions
+            LEFT OUTER JOIN user_name
+            ON questions.user_id = user_name.id
             LEFT OUTER JOIN how_comments
             ON questions.id = how_comments.hc_question_id
             LEFT OUTER JOIN how_answers
-            ON questions.id = how_answers.target_q_id
+            ON questions.id = how_answers.hw_q_id
         ");
         exit(var_dump($questions));
         $auths = \Auth::user();
