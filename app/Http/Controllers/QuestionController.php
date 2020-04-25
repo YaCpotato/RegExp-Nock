@@ -41,7 +41,7 @@ class QuestionController extends Controller
             )
             SELECT  questions.id,
                     questions.content,
-                    user_name.name,
+                    user_name.name as user_name,
                     questions.answer,
                     questions.created_at,
                     questions.updated_at,
@@ -56,7 +56,6 @@ class QuestionController extends Controller
             LEFT OUTER JOIN how_answers
             ON questions.id = how_answers.hw_q_id
         ");
-        exit(var_dump($questions));
         $auths = \Auth::user();
         return view('question/index', compact('questions', 'auths'));
     }

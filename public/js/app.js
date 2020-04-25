@@ -44782,9 +44782,7 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); // Vue.component('theheader', require('./components/TheHeader.vue').default);
-// Vue.component('solvepage', require('./components/SolvePage.vue').default);
-
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 var app = new Vue({
   el: '#app',
   data: function data() {
@@ -44811,8 +44809,7 @@ var app = new Vue({
       });
     }
   }
-}); // '123-0099 ririeooo',
-// '/[0-9]{3}-[0-9]{4}/',
+});
 
 /***/ }),
 

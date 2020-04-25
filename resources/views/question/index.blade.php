@@ -29,8 +29,8 @@
                     </span>
                     </p>
                     <p class="card-footer-item">
-                    <span><i class="far fa-comments"></i>NUMBER</span>
-                    <span><i class="fas fa-baseball-ball"></i>NUMBER</span>
+                    <span><i class="far fa-comments index-icon"></i>{{ $question->comments_count }}</span>
+                    <span><i class="fas fa-baseball-ball index-icon"></i>{{ $question->answers_count }}</span>
                     </p>
                 </footer>
                 </div>
