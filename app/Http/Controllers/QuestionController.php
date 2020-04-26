@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Question;
-use App\Answer;
 use App\Comment;
 use DB;
 
@@ -100,7 +99,8 @@ class QuestionController extends Controller
         $question = Question::find($id);
         $this->incrementViewCount($question);
         $auths = \Auth::user();
-        return view('question/detail', compact('question', 'auths'));
+        $comments = Comment::where('question_id', $id);
+        return view('question/detail', compact('question', 'auths','comments'));
     }
 
     /**
