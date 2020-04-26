@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
-    <div class="card">
+<div id="detail" class="container">
+    <div class="card detail-card">
         <div class="card-content detail-card-content">
             <p class="title">
                 {{ $question->content }}
@@ -43,10 +43,26 @@
             @endforeach
         </div>
         <div class="panel-block">
-            <button class="button is-link is-outlined">
+            <button class="button is-link is-outlined" @click="commentModalActivate">
                 <i class="far fa-comments index-icon"></i>
             </button>
         </div>
-        </nav>
+    </nav>
+    <div class="modal comment-modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+            <p class="modal-card-title">新しいコメント</p>
+            </header>
+            <section class="modal-card-body">
+            <!-- Content ... -->
+            </section>
+            <footer class="modal-card-foot">
+            <button class="button is-success" @click="commentModalDeactivate">Save changes</button>
+            <button class="button" @click="commentModalDeactivate">Cancel</button>
+            </footer>
+        </div>
+    </div>
 </div>
+<script src="{{ mix('js/app.js') }}"></script>
 @endsection

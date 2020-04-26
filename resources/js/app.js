@@ -26,3 +26,20 @@ const app = new Vue({
         }
     }
 });
+
+const detail = new Vue({
+    el: '#detail',
+    data(){
+        return{
+            
+        }
+    },
+    methods: {
+        commentModalActivate() {
+            $('.comment-modal').addClass('is-active');
+        },
+        commentModalDeactivate() {
+            $('.comment-modal').removeClass('is-active');
+        }
+    }
+});

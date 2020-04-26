@@ -44810,6 +44810,20 @@ var app = new Vue({
     }
   }
 });
+var detail = new Vue({
+  el: '#detail',
+  data: function data() {
+    return {};
+  },
+  methods: {
+    commentModalActivate: function commentModalActivate() {
+      $('.comment-modal').addClass('is-active');
+    },
+    commentModalDeactivate: function commentModalDeactivate() {
+      $('.comment-modal').removeClass('is-active');
+    }
+  }
+});
 
 /***/ }),
 

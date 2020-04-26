@@ -12049,3 +12049,12 @@ label.panel-block:hover {
   margin-left: 1rem;
 }
 
+.detail-card {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.panel {
+  margin-bottom: 2rem;
+}
+
