@@ -99,7 +99,7 @@ class QuestionController extends Controller
         $question = Question::find($id);
         $this->incrementViewCount($question);
         $auths = \Auth::user();
-        $comments = Comment::where('question_id', $id);
+        $comments = Comment::query()->where('question_id', $id)->get();
         return view('question/detail', compact('question', 'auths','comments'));
     }
 
