@@ -33,7 +33,6 @@ Route::get('/answer_edit', 'AnswerController@edit')->name('answer_edit')->middle
 Route::put('/answer_update', 'AnswerController@update')->name('answer_update')->middleware('auth');
 Route::delete('/answer_destroy', 'AnswerController@destroy')->name('answer_destroy')->middleware('auth');
 
-// Route::get('/comment', 'CommentController@index')->name('comment_index');
-// Route::get('/comment', 'CommentController@store')->name('comment_store')->middleware('auth');
-// Route::get('/comment', 'CommentController@update')->name('comment_update')->middleware('auth');
-// Route::get('/comment', 'CommentController@destroy')->name('comment_destroy')->middleware('auth');
+Route::post('/comment', 'CommentController@store')->name('comment_store')->middleware('auth');
+Route::put('/comment', 'CommentController@update')->name('comment_update')->middleware('auth');
+Route::delete('/comment', 'CommentController@destroy')->name('comment_destroy')->middleware('auth');

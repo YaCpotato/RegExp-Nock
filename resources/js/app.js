@@ -31,7 +31,7 @@ const detail = new Vue({
     el: '#detail',
     data(){
         return{
-            
+            postComments:''
         }
     },
     methods: {
@@ -43,14 +43,13 @@ const detail = new Vue({
             let elements = document.getElementById('comment-modal');
             elements.classList.remove('is-active');
         },
-        addComments() {
-            axios.post('http://127.0.0.1:8000/highlight',{
-                base_string: this.baseString,
-                reg_exp: `/${this.regExp}/`
+        addComments(questionId) {
+            axios.post('http://127.0.0.1:8000/comment',{
+                post_comment: postComments,
+                question_id: questionId
             })
             .then((res)=>{
-                this.checkAnswer = res.data
-                console.log(this.checkAnswer)
+                
                 return;
                 })
                 .catch(error => console.log(error))
