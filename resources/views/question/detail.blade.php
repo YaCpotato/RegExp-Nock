@@ -56,7 +56,7 @@
             </header>
             <section class="modal-card-body">
                 <textarea class="textarea" v-model="postComments" name = "post_comments" rows="2"></textarea>
-                <button type="button" @click="sendComments({{ $question->id }})">
+                <button type="button" @click="addComments({{ $question->id }})">
             </section>
             <footer class="modal-card-foot">
             <button class="button is-success" @click="commentModalDeactivate">Save changes</button>

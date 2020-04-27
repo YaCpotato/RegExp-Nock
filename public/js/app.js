@@ -44817,16 +44817,6 @@ var detail = new Vue({
       postComments: ''
     };
   },
-  mounted: function mounted() {
-    axios.get('http://127.0.0.1:8000/comment', {
-      question_id: questionId
-    }).then(function (res) {
-      console.log(res);
-      return;
-    })["catch"](function (error) {
-      return console.log(error);
-    });
-  },
   methods: {
     commentModalActivate: function commentModalActivate() {
       var elements = document.getElementById('comment-modal');
@@ -44838,9 +44828,10 @@ var detail = new Vue({
     },
     addComments: function addComments(questionId) {
       axios.post('http://127.0.0.1:8000/comment', {
-        post_comment: postComments,
+        post_comment: this.postComments,
         question_id: questionId
       }).then(function (res) {
+        console.log(res);
         return;
       })["catch"](function (error) {
         return console.log(error);

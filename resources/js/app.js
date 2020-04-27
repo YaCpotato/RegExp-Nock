@@ -45,7 +45,7 @@ const detail = new Vue({
         },
         addComments(questionId) {
             axios.post('http://127.0.0.1:8000/comment',{
-                post_comment: postComments,
+                post_comment: this.postComments,
                 question_id: questionId
             })
             .then((res)=>{
