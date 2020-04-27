@@ -44813,7 +44813,19 @@ var app = new Vue({
 var detail = new Vue({
   el: '#detail',
   data: function data() {
-    return {};
+    return {
+      postComments: ''
+    };
+  },
+  mounted: function mounted() {
+    axios.get('http://127.0.0.1:8000/comment', {
+      question_id: questionId
+    }).then(function (res) {
+      console.log(res);
+      return;
+    })["catch"](function (error) {
+      return console.log(error);
+    });
   },
   methods: {
     commentModalActivate: function commentModalActivate() {
@@ -44823,6 +44835,16 @@ var detail = new Vue({
     commentModalDeactivate: function commentModalDeactivate() {
       var elements = document.getElementById('comment-modal');
       elements.classList.remove('is-active');
+    },
+    addComments: function addComments(questionId) {
+      axios.post('http://127.0.0.1:8000/comment', {
+        post_comment: postComments,
+        question_id: questionId
+      }).then(function (res) {
+        return;
+      })["catch"](function (error) {
+        return console.log(error);
+      });
     }
   }
 });

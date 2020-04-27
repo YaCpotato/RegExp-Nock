@@ -49,7 +49,7 @@ const detail = new Vue({
                 question_id: questionId
             })
             .then((res)=>{
-                
+                console.log(res)
                 return;
                 })
                 .catch(error => console.log(error))

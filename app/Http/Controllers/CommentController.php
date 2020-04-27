@@ -8,16 +8,28 @@ use App\Question;
 class CommentController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     * @param int questionId 
+     */
+    public function index()
+    {
+        $comments = Comment::query()->where('question_id',$request->comment)->get();        
+        return $comments;
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id question_id
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $questionId)
+    public function store(Request $request)
     {
         $comment = new comment;
-        $comment->comment = $request->post_comment;
+        $comment->comment = $request->comment;
         $comment->user_id = \Auth::user()->id;
         $comment->question_id = $request->question_id;
         $comment->save();
