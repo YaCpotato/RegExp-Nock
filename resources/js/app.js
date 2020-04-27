@@ -42,6 +42,18 @@ const detail = new Vue({
         commentModalDeactivate() {
             let elements = document.getElementById('comment-modal');
             elements.classList.remove('is-active');
+        },
+        addComments() {
+            axios.post('http://127.0.0.1:8000/highlight',{
+                base_string: this.baseString,
+                reg_exp: `/${this.regExp}/`
+            })
+            .then((res)=>{
+                this.checkAnswer = res.data
+                console.log(this.checkAnswer)
+                return;
+                })
+                .catch(error => console.log(error))
         }
     }
 });
