@@ -44817,10 +44817,12 @@ var detail = new Vue({
   },
   methods: {
     commentModalActivate: function commentModalActivate() {
-      $('.comment-modal').addClass('is-active');
+      var elements = document.getElementById('comment-modal');
+      elements.classList.add('is-active');
     },
     commentModalDeactivate: function commentModalDeactivate() {
-      $('.comment-modal').removeClass('is-active');
+      var elements = document.getElementById('comment-modal');
+      elements.classList.remove('is-active');
     }
   }
 });

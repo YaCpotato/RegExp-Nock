@@ -36,10 +36,12 @@ const detail = new Vue({
     },
     methods: {
         commentModalActivate() {
-            $('.comment-modal').addClass('is-active');
+            let elements = document.getElementById('comment-modal');
+            elements.classList.add('is-active');
         },
         commentModalDeactivate() {
-            $('.comment-modal').removeClass('is-active');
+            let elements = document.getElementById('comment-modal');
+            elements.classList.remove('is-active');
         }
     }
 });

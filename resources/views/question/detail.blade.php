@@ -48,7 +48,7 @@
             </button>
         </div>
     </nav>
-    <div class="modal comment-modal">
+    <div id="comment-modal" class="modal">
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head">
