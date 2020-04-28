@@ -1948,6 +1948,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
@@ -1994,13 +2010,13 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
         post_comment: this.postComments,
         question_id: questionId
       }).then(function (res) {
-        console.log(res);
         return;
       })["catch"](function (error) {
         return console.log(error);
       });
       this.init();
-    }
+    },
+    deleteComments: function deleteComments($commentId) {}
   }
 });
 
@@ -32858,8 +32874,11 @@ var render = function() {
           return _c("a", { key: comment.id, staticClass: "panel-block" }, [
             _vm._m(0, true),
             _vm._v(
-              "\n                " + _vm._s(comment.comment) + "\n            "
-            )
+              "\n                " +
+                _vm._s(comment.comment) +
+                "\n                "
+            ),
+            _vm._m(1, true)
           ])
         }),
         0
@@ -32885,7 +32904,7 @@ var render = function() {
       _c("div", { staticClass: "modal-background" }),
       _vm._v(" "),
       _c("div", { staticClass: "modal-card" }, [
-        _vm._m(1),
+        _vm._m(2),
         _vm._v(" "),
         _c("section", { staticClass: "modal-card-body" }, [
           _c("textarea", {
@@ -32952,6 +32971,59 @@ var staticRenderFns = [
     return _c("span", { staticClass: "panel-icon" }, [
       _c("i", { staticClass: "fas fa-user" })
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "dropdown is-hoverable",
+        staticStyle: { position: "absolute", right: "0" }
+      },
+      [
+        _c("div", { staticClass: "dropdown-trigger" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: {
+                "aria-haspopup": "true",
+                "aria-controls": "dropdown-menu4"
+              }
+            },
+            [
+              _c("span", { staticClass: "icon is-small" }, [
+                _c("i", {
+                  staticClass: "fas fa-edit",
+                  attrs: { "area-hidden": "true" }
+                })
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "dropdown-menu",
+            attrs: { id: "dropdown-menu4", role: "menu" }
+          },
+          [
+            _c("div", { staticClass: "dropdown-content" }, [
+              _c("div", { staticClass: "dropdown-item" }, [
+                _c("p", [
+                  _vm._v("You can insert "),
+                  _c("strong", [_vm._v("any type of content")]),
+                  _vm._v(" within the dropdown menu.")
+                ])
+              ])
+            ])
+          ]
+        )
+      ]
+    )
   },
   function() {
     var _vm = this

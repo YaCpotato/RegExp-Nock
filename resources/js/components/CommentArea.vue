@@ -10,6 +10,22 @@
                     <i class="fas fa-user"></i>
                 </span>
                 {{ comment.comment }}
+                <div class="dropdown is-hoverable" style="position:absolute;right:0;">
+                    <div class="dropdown-trigger">
+                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                        <span class="icon is-small">
+                            <i class="fas fa-edit" area-hidden="true"></i>
+                        </span>
+                        </button>
+                    </div>
+                    <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                        <div class="dropdown-content">
+                            <div class="dropdown-item">
+                                <p>You can insert <strong>any type of content</strong> within the dropdown menu.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </a>
         </div>
         <div class="panel-block">
@@ -86,6 +102,9 @@ export default {
                 })
                 .catch(error => console.log(error))
             this.init()
+        },
+        deleteComments($commentId) {
+
         }
     }
 }
