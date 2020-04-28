@@ -53,6 +53,11 @@ export default {
         }
     },
     mounted() {
+        this.init()
+    },
+    methods: {
+        init() {
+            this.comments = []
             axios.post('http://127.0.0.1:8000/comment_index',{
             question_id: this.id
         })
@@ -63,8 +68,7 @@ export default {
             return;
             })
             .catch(error => console.log(error))
-    },
-    methods: {
+        },
         commentModalActivate() {
             let elements = document.getElementById('comment-modal');
             elements.classList.add('is-active');
@@ -83,6 +87,7 @@ export default {
                 return;
                 })
                 .catch(error => console.log(error))
+            this.init()
         }
     }
 }

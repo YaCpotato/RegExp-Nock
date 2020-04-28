@@ -1963,21 +1963,25 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/comment_index', {
-      question_id: this.id
-    }).then(function (res) {
-      for (var i = 0; i < res.data.length; i++) {
-        _this.comments.push(res.data[i]);
-      }
-
-      return;
-    })["catch"](function (error) {
-      return console.log(error);
-    });
+    this.init();
   },
   methods: {
+    init: function init() {
+      var _this = this;
+
+      this.comments = [];
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/comment_index', {
+        question_id: this.id
+      }).then(function (res) {
+        for (var i = 0; i < res.data.length; i++) {
+          _this.comments.push(res.data[i]);
+        }
+
+        return;
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+    },
     commentModalActivate: function commentModalActivate() {
       var elements = document.getElementById('comment-modal');
       elements.classList.add('is-active');
@@ -1996,6 +2000,7 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
       })["catch"](function (error) {
         return console.log(error);
       });
+      this.init();
     }
   }
 });
