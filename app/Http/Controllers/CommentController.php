@@ -36,7 +36,9 @@ class CommentController extends Controller
         $comment->save();
 
         $comments = Comment::query()->where('question_id',$request->question_id)->get();
-        return $comments;
+        $auths = \Auth::user();
+        $question = Question::find($request->question_id);
+        return view('question/detail', compact('question', 'auths','comments'));
     }
     
     /**
