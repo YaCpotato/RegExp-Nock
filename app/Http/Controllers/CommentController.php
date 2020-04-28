@@ -14,9 +14,10 @@ class CommentController extends Controller
      * @return \Illuminate\Http\Response
      * @param int questionId 
      */
-    public function index()
+    public function index(Request $request)
     {
-        $comments = Comment::query()->where('question_id',$request->comment)->get();        
+        exit(var_dump($request->question_id));  
+        $comments = Comment::query()->where('question_id',$request->question_id)->get(); 
         return $comments;
     }
 

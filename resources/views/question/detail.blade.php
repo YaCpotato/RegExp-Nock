@@ -28,26 +28,7 @@
             </p>
         </footer>
     </div>
-    <nav class="panel">
-        <p class="panel-heading">
-            コメント
-        </p>
-        <div class="container">
-            @foreach($comments as $comment)
-            <a class="panel-block">
-                <span class="panel-icon">
-                    <i class="fas fa-user"></i>
-                </span>
-                {{ $comment->comment }}
-            </a>
-            @endforeach
-        </div>
-        <div class="panel-block">
-            <button class="button is-link is-outlined" @click="commentModalActivate">
-                <i class="far fa-comments index-icon"></i>
-            </button>
-        </div>
-    </nav>
+    <comment-area :questionid="{{ $question->id }}"></comment-area>
     <div id="comment-modal" class="modal">
         <div class="modal-background"></div>
         <div class="modal-card">

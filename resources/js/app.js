@@ -1,5 +1,6 @@
 require('./bootstrap');
 window.Vue = require('vue');
+Vue.component('comment-area', require('./components/CommentArea.vue').default);
 
 const app = new Vue({
     el: '#app',
@@ -42,17 +43,6 @@ const detail = new Vue({
         commentModalDeactivate() {
             let elements = document.getElementById('comment-modal');
             elements.classList.remove('is-active');
-        },
-        addComments(questionId) {
-            axios.post('http://127.0.0.1:8000/comment',{
-                post_comment: this.postComments,
-                question_id: questionId
-            })
-            .then((res)=>{
-                console.log(res)
-                return;
-                })
-                .catch(error => console.log(error))
         }
     }
 });

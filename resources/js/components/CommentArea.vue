@@ -1,57 +1,22 @@
 <template>
-    <div id="app" class="container">
-        <div class="content is-medium">
-            <h2>Let me see your Question!</h2>
-            <p>問題が出題できます。答えがわかっていたら、ぜひ正解とできるかチェックしてみましょう！</p>
+    <nav class="panel">
+        <p class="panel-heading">
+            コメント
+        </p>
+        <div class="container">
+            <a v-for="comment in comments"  :key="comment" class="panel-block">
+                <span class="panel-icon">
+                    <i class="fas fa-user"></i>
+                </span>
+                {{ comment }}
+            </a>
         </div>
-    <form action="/question_store" method="POST">
-        <div class="field">
-            <label class="label is-large">対象文字列</label>
-            <div class="field-body">
-                <div class="field">
-                    <p class="control">
-                        <textarea class="textarea" v-model="baseString" name = "content" rows="2"></textarea>
-                    </p>
-                </div>
-            </div>
+        <div class="panel-block">
+            <button class="button is-link is-outlined" @click="commentModalActivate">
+                <i class="far fa-comments index-icon"></i>
+            </button>
         </div>
-        <div class="field">
-            <label class="label is-large">正規表現</label>
-            <div class="field-body">
-                <div class="field has-addons answer-area">
-                    <p class="control">
-                        <a class="button is-static">
-                        /
-                        </a>
-                    </p>
-                    <p class="control is-expanded">
-                        <input class="input" type="textarea" v-model="regExp" name = "answer">
-                    </p>
-                    <p class="control">
-                        <a class="button is-static">
-                        /
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <button type="button" class="button is-info" @click="getRightAnswer">チェックしてみる</button>
-        <div class="field check-area">
-            <div v-html="checkAnswer"></div>
-        </div>
-        <div class="field">
-            <label class="label is-large">補足説明（空欄可）　〜ヒント等あったら書いてみましょう！〜</label>
-            <div class="field-body">
-                <div class="field">
-                    <p class="control">
-                        <textarea class="textarea" v-model="comments" name = "comments" rows="2"></textarea>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <button type="submit" class="button is-primary">出題する</button>
-    </form>
-    </div>
+    </nav>
 </template>
 
  <script>
@@ -63,19 +28,29 @@ axios.defaults.headers.common = {
 
 export default {
     props:{
-        useMode:{
-            type: String,
-            required: false,
-            default: 'check'
+        questionid:{
+            type: Number,
+            required: true
         }
     },
     data(){
         return{
-            baseString:'',
-            regExp:'',
-            checkAnswer:'',
-            comments:''
+            postComments:'',
+            comments:[]
         }
+    },
+    mounted() {
+        axios.get('http://127.0.0.1:8000/comment',{
+            question_id: this.questionid
+        })
+        .then((res)=>{
+            for(let i = 0;i < res.data.length;i++) {
+                this.comments.push(res.data[i])
+            }
+            console.log(this.comments)
+            return;
+            })
+            .catch(error => console.log(error))
     },
     methods: {
         commentModalActivate() {
