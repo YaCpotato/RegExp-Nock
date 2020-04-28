@@ -13,7 +13,7 @@
             </a>
         </div>
         <div class="panel-block">
-            <button class="button is-link is-outlined" @click="commentModalActivate">
+            <button class="button is-link is-outlined" @click="commentModalActivate()">
                 <i class="far fa-comments index-icon"></i>
             </button>
         </div>
@@ -26,11 +26,10 @@
             </header>
             <section class="modal-card-body">
                 <textarea class="textarea" v-model="postComments" rows="2"></textarea>
-                <button type="button" class="button is-primary" @click="addComments(id)">コメントする</button>
             </section>
             <footer class="modal-card-foot">
-            <button class="button is-success" @click="commentModalDeactivate">Save changes</button>
-            <button class="button" @click="commentModalDeactivate">Cancel</button>
+            <button type="button" class="button is-primary" @click="commentModalDeactivate();addComments(id);">コメントする</button>
+            <button class="button" @click="commentModalDeactivate()">Cancel</button>
             </footer>
         </div>
     </div>
@@ -83,7 +82,6 @@ export default {
                 question_id: questionId
             })
             .then((res)=>{
-                console.log(res)
                 return;
                 })
                 .catch(error => console.log(error))

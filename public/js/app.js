@@ -1948,7 +1948,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
@@ -32871,7 +32870,11 @@ var render = function() {
           "button",
           {
             staticClass: "button is-link is-outlined",
-            on: { click: _vm.commentModalActivate }
+            on: {
+              click: function($event) {
+                return _vm.commentModalActivate()
+              }
+            }
           },
           [_c("i", { staticClass: "far fa-comments index-icon" })]
         )
@@ -32905,8 +32908,10 @@ var render = function() {
                 _vm.postComments = $event.target.value
               }
             }
-          }),
-          _vm._v(" "),
+          })
+        ]),
+        _vm._v(" "),
+        _c("footer", { staticClass: "modal-card-foot" }, [
           _c(
             "button",
             {
@@ -32914,29 +32919,23 @@ var render = function() {
               attrs: { type: "button" },
               on: {
                 click: function($event) {
-                  return _vm.addComments(_vm.id)
+                  _vm.commentModalDeactivate()
+                  _vm.addComments(_vm.id)
                 }
               }
             },
             [_vm._v("コメントする")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("footer", { staticClass: "modal-card-foot" }, [
-          _c(
-            "button",
-            {
-              staticClass: "button is-success",
-              on: { click: _vm.commentModalDeactivate }
-            },
-            [_vm._v("Save changes")]
           ),
           _vm._v(" "),
           _c(
             "button",
             {
               staticClass: "button",
-              on: { click: _vm.commentModalDeactivate }
+              on: {
+                click: function($event) {
+                  return _vm.commentModalDeactivate()
+                }
+              }
             },
             [_vm._v("Cancel")]
           )
