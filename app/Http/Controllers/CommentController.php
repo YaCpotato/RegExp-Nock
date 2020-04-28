@@ -16,7 +16,6 @@ class CommentController extends Controller
      */
     public function index(Request $request)
     {
-        exit(var_dump($request->question_id));  
         $comments = Comment::query()->where('question_id',$request->question_id)->get(); 
         return $comments;
     }

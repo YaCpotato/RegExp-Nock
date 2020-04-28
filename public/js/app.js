@@ -1931,18 +1931,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
   'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    questionid: {
-      type: Number,
-      required: true
-    }
-  },
+  props: ['id'],
   data: function data() {
     return {
       postComments: '',
@@ -1952,14 +1965,13 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
   mounted: function mounted() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/comment', {
-      question_id: this.questionid
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/comment_index', {
+      question_id: this.id
     }).then(function (res) {
       for (var i = 0; i < res.data.length; i++) {
         _this.comments.push(res.data[i]);
       }
 
-      console.log(_this.comments);
       return;
     })["catch"](function (error) {
       return console.log(error);
@@ -1975,7 +1987,7 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
       elements.classList.remove('is-active');
     },
     addComments: function addComments(questionId) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/comment', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/comment_store', {
         post_comment: this.postComments,
         question_id: questionId
       }).then(function (res) {
@@ -32829,32 +32841,102 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("nav", { staticClass: "panel" }, [
-    _c("p", { staticClass: "panel-heading" }, [
-      _vm._v("\n        コメント\n    ")
+  return _c("div", [
+    _c("nav", { staticClass: "panel" }, [
+      _c("p", { staticClass: "panel-heading" }, [
+        _vm._v("\n            コメント\n        ")
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "container" },
+        _vm._l(_vm.comments, function(comment) {
+          return _c("a", { key: comment.id, staticClass: "panel-block" }, [
+            _vm._m(0, true),
+            _vm._v(
+              "\n                " + _vm._s(comment.comment) + "\n            "
+            )
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-block" }, [
+        _c(
+          "button",
+          {
+            staticClass: "button is-link is-outlined",
+            on: { click: _vm.commentModalActivate }
+          },
+          [_c("i", { staticClass: "far fa-comments index-icon" })]
+        )
+      ])
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "container" },
-      _vm._l(_vm.comments, function(comment) {
-        return _c("a", { key: comment, staticClass: "panel-block" }, [
-          _vm._m(0, true),
-          _vm._v("\n            " + _vm._s(comment) + "\n        ")
+    _c("div", { staticClass: "modal", attrs: { id: "comment-modal" } }, [
+      _c("div", { staticClass: "modal-background" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "modal-card" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c("section", { staticClass: "modal-card-body" }, [
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.postComments,
+                expression: "postComments"
+              }
+            ],
+            staticClass: "textarea",
+            attrs: { rows: "2" },
+            domProps: { value: _vm.postComments },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.postComments = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button is-primary",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  return _vm.addComments(_vm.id)
+                }
+              }
+            },
+            [_vm._v("コメントする")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("footer", { staticClass: "modal-card-foot" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button is-success",
+              on: { click: _vm.commentModalDeactivate }
+            },
+            [_vm._v("Save changes")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              on: { click: _vm.commentModalDeactivate }
+            },
+            [_vm._v("Cancel")]
+          )
         ])
-      }),
-      0
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "panel-block" }, [
-      _c(
-        "button",
-        {
-          staticClass: "button is-link is-outlined",
-          on: { click: _vm.commentModalActivate }
-        },
-        [_c("i", { staticClass: "far fa-comments index-icon" })]
-      )
+      ])
     ])
   ])
 }
@@ -32865,6 +32947,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "panel-icon" }, [
       _c("i", { staticClass: "fas fa-user" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "modal-card-head" }, [
+      _c("p", { staticClass: "modal-card-title" }, [_vm._v("新しいコメント")])
     ])
   }
 ]

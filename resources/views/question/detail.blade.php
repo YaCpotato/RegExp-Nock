@@ -28,23 +28,7 @@
             </p>
         </footer>
     </div>
-    <comment-area :questionid="{{ $question->id }}"></comment-area>
-    <div id="comment-modal" class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-            <header class="modal-card-head">
-            <p class="modal-card-title">新しいコメント</p>
-            </header>
-            <section class="modal-card-body">
-                <textarea class="textarea" v-model="postComments" rows="2"></textarea>
-                <button type="button" @click="addComments({{ $question->id }})">
-            </section>
-            <footer class="modal-card-foot">
-            <button class="button is-success" @click="commentModalDeactivate">Save changes</button>
-            <button class="button" @click="commentModalDeactivate">Cancel</button>
-            </footer>
-        </div>
-    </div>
+    <comment-area :id="{{ $question->id }}"></comment-area>
 </div>
 <script src="{{ mix('js/app.js') }}"></script>
 @endsection
