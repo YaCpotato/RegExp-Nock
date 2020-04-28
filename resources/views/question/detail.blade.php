@@ -55,12 +55,8 @@
             <p class="modal-card-title">新しいコメント</p>
             </header>
             <section class="modal-card-body">
-                <form action="/comment" method="POST">
-                    @csrf
-                    <textarea class="textarea" name="post_comment" rows="2"></textarea>
-                    <input type="hidden" value="{{ $question->id }}" name="question_id">
-                    <button type="submit" class="button is-primary">コメントする</button>
-                </form>
+                <textarea class="textarea" v-model="postComments" rows="2"></textarea>
+                <button type="button" @click="addComments({{ $question->id }})">
             </section>
             <footer class="modal-card-foot">
             <button class="button is-success" @click="commentModalDeactivate">Save changes</button>
