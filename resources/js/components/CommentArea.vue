@@ -21,7 +21,11 @@
                     <div class="dropdown-menu" id="dropdown-menu4" role="menu">
                         <div class="dropdown-content">
                             <div class="dropdown-item">
-                                <p>You can insert <strong>any type of content</strong> within the dropdown menu.</p>
+                                <button class="button is-danger" @click="deleteComment(comment.id)">
+                                    <span class="icon">
+                                        <i class="fas fa-trash" area-hidden="true"></i>
+                                    </span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -103,8 +107,15 @@ export default {
                 .catch(error => console.log(error))
             this.init()
         },
-        deleteComments($commentId) {
-
+        deleteComment(commentId) {
+            axios.post('http://127.0.0.1:8000/comment_delete',{
+                comment_id: commentId
+            })
+            .then((res)=>{
+                return;
+                })
+                .catch(error => console.log(error))
+            this.init()
         }
     }
 }

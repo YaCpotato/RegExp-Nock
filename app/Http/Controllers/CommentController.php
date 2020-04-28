@@ -64,9 +64,9 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $comment = Comment::findOrFail($id);
+        $comment = Comment::findOrFail($request->comment_id);
         $comment->delete();
         
         $comments = Comment::all();
