@@ -10,25 +10,13 @@
                     <i class="fas fa-user"></i>
                 </span>
                 {{ comment.comment }}
-                <div class="dropdown is-hoverable" style="position:absolute;right:0;">
-                    <div class="dropdown-trigger">
-                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                        <span class="icon is-small">
-                            <i class="fas fa-edit" area-hidden="true"></i>
-                        </span>
-                        </button>
-                    </div>
-                    <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                        <div class="dropdown-content">
-                            <div class="dropdown-item">
-                                <button class="button is-danger" @click="deleteComment(comment.id)">
-                                    <span class="icon">
-                                        <i class="fas fa-trash" area-hidden="true"></i>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                <div style="position:absolute;right:0;">
+                    <span class="icon" @click="editComment(comment.id,comment.comment)">
+                        <i class="fas fa-edit" area-hidden="true"></i>
+                    </span>
+                    <span class="icon" @click="deleteComment(comment.id)">
+                        <i class="fas fa-trash" area-hidden="true"></i>
+                    </span>
                 </div>
             </a>
         </div>
@@ -42,13 +30,15 @@
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head">
-            <p class="modal-card-title">新しいコメント</p>
+                <p v-if="!editMode" class="modal-card-title">新しいコメント</p>
+                <p v-else class="modal-card-title">コメントの編集</p>
             </header>
             <section class="modal-card-body">
                 <textarea class="textarea" v-model="postComments" rows="2"></textarea>
             </section>
             <footer class="modal-card-foot">
-            <button type="button" class="button is-primary" @click="commentModalDeactivate();addComments(id);">コメントする</button>
+            <button v-if="!editMode" type="button" class="button is-primary" @click="commentModalDeactivate();addComments(id);">コメントする</button>
+            <button v-else type="button" class="button is-primary" @click="commentModalDeactivate();updateComment(currentEditId);">修正する</button>
             <button class="button" @click="commentModalDeactivate()">Cancel</button>
             </footer>
         </div>
@@ -68,7 +58,9 @@ export default {
     data(){
         return{
             postComments:'',
-            comments:[]
+            comments:[],
+            editMode: false,
+            currentEditId:null
         }
     },
     mounted() {
@@ -76,7 +68,9 @@ export default {
     },
     methods: {
         init() {
-            this.comments = []
+            this.comments = [],
+            this.currentEditId = null
+            this.postComments = ''
             axios.post('http://127.0.0.1:8000/comment_index',{
             question_id: this.id
         })
@@ -100,6 +94,24 @@ export default {
             axios.post('http://127.0.0.1:8000/comment_store',{
                 post_comment: this.postComments,
                 question_id: questionId
+            })
+            .then((res)=>{
+                return;
+                })
+                .catch(error => console.log(error))
+            this.init()
+        },
+        editComment(id,comment) {
+            this.editMode = true
+            this.postComments = comment
+            this.currentEditId = id
+            this.commentModalActivate()
+        },
+        updateComment(commentId) {
+            axios.post('http://127.0.0.1:8000/comment_update',{
+                comment_id: commentId,
+                question_id: this.id,
+                comment: this.postComments
             })
             .then((res)=>{
                 return;

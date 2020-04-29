@@ -47,15 +47,11 @@ class CommentController extends Controller
      * @param  int  $questionId
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, $questionId)
+    public function update(Request $request)
     {
-        $comment = Comment::findOrFail($id);
+        $comment = Comment::findOrFail($request->comment_id);
         $comment->comment = $request->comment;
         $comment->save();
-
-        $question = Question::find($questionId);
-        $comments = Comment::query()->where('question_id',$questionId)->get();
-        return view('question/detail', compact('question','comments'));
     }
 
     /**

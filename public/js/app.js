@@ -1958,16 +1958,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
@@ -1978,7 +1968,9 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
   data: function data() {
     return {
       postComments: '',
-      comments: []
+      comments: [],
+      editMode: false,
+      currentEditId: null
     };
   },
   mounted: function mounted() {
@@ -1988,7 +1980,8 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
     init: function init() {
       var _this = this;
 
-      this.comments = [];
+      this.comments = [], this.currentEditId = null;
+      this.postComments = '';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/comment_index', {
         question_id: this.id
       }).then(function (res) {
@@ -2013,6 +2006,24 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/comment_store', {
         post_comment: this.postComments,
         question_id: questionId
+      }).then(function (res) {
+        return;
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+      this.init();
+    },
+    editComment: function editComment(id, comment) {
+      this.editMode = true;
+      this.postComments = comment;
+      this.currentEditId = id;
+      this.commentModalActivate();
+    },
+    updateComment: function updateComment(commentId) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/comment_update', {
+        comment_id: commentId,
+        question_id: this.id,
+        comment: this.postComments
       }).then(function (res) {
         return;
       })["catch"](function (error) {
@@ -32892,42 +32903,43 @@ var render = function() {
                 _vm._s(comment.comment) +
                 "\n                "
             ),
-            _c(
-              "div",
-              {
-                staticClass: "dropdown is-hoverable",
-                staticStyle: { position: "absolute", right: "0" }
-              },
-              [
-                _vm._m(1, true),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "dropdown-menu",
-                    attrs: { id: "dropdown-menu4", role: "menu" }
-                  },
-                  [
-                    _c("div", { staticClass: "dropdown-content" }, [
-                      _c("div", { staticClass: "dropdown-item" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "button is-danger",
-                            on: {
-                              click: function($event) {
-                                return _vm.deleteComment(comment.id)
-                              }
-                            }
-                          },
-                          [_vm._m(2, true)]
-                        )
-                      ])
-                    ])
-                  ]
-                )
-              ]
-            )
+            _c("div", { staticStyle: { position: "absolute", right: "0" } }, [
+              _c(
+                "span",
+                {
+                  staticClass: "icon",
+                  on: {
+                    click: function($event) {
+                      return _vm.editComment(comment.id, comment.comment)
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fas fa-edit",
+                    attrs: { "area-hidden": "true" }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass: "icon",
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteComment(comment.id)
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fas fa-trash",
+                    attrs: { "area-hidden": "true" }
+                  })
+                ]
+              )
+            ])
           ])
         }),
         0
@@ -32953,7 +32965,15 @@ var render = function() {
       _c("div", { staticClass: "modal-background" }),
       _vm._v(" "),
       _c("div", { staticClass: "modal-card" }, [
-        _vm._m(3),
+        _c("header", { staticClass: "modal-card-head" }, [
+          !_vm.editMode
+            ? _c("p", { staticClass: "modal-card-title" }, [
+                _vm._v("新しいコメント")
+              ])
+            : _c("p", { staticClass: "modal-card-title" }, [
+                _vm._v("コメントの編集")
+              ])
+        ]),
         _vm._v(" "),
         _c("section", { staticClass: "modal-card-body" }, [
           _c("textarea", {
@@ -32980,20 +33000,35 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("footer", { staticClass: "modal-card-foot" }, [
-          _c(
-            "button",
-            {
-              staticClass: "button is-primary",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  _vm.commentModalDeactivate()
-                  _vm.addComments(_vm.id)
-                }
-              }
-            },
-            [_vm._v("コメントする")]
-          ),
+          !_vm.editMode
+            ? _c(
+                "button",
+                {
+                  staticClass: "button is-primary",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      _vm.commentModalDeactivate()
+                      _vm.addComments(_vm.id)
+                    }
+                  }
+                },
+                [_vm._v("コメントする")]
+              )
+            : _c(
+                "button",
+                {
+                  staticClass: "button is-primary",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      _vm.commentModalDeactivate()
+                      _vm.updateComment(_vm.currentEditId)
+                    }
+                  }
+                },
+                [_vm._v("修正する")]
+              ),
           _vm._v(" "),
           _c(
             "button",
@@ -33019,44 +33054,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "panel-icon" }, [
       _c("i", { staticClass: "fas fa-user" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "dropdown-trigger" }, [
-      _c(
-        "button",
-        {
-          staticClass: "button",
-          attrs: { "aria-haspopup": "true", "aria-controls": "dropdown-menu4" }
-        },
-        [
-          _c("span", { staticClass: "icon is-small" }, [
-            _c("i", {
-              staticClass: "fas fa-edit",
-              attrs: { "area-hidden": "true" }
-            })
-          ])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", { staticClass: "fas fa-trash", attrs: { "area-hidden": "true" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "modal-card-head" }, [
-      _c("p", { staticClass: "modal-card-title" }, [_vm._v("新しいコメント")])
     ])
   }
 ]

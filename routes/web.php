@@ -34,5 +34,5 @@ Route::put('/answer_update', 'AnswerController@update')->name('answer_update')->
 Route::delete('/answer_destroy', 'AnswerController@destroy')->name('answer_destroy')->middleware('auth');
 Route::post('/comment_index', 'CommentController@index')->name('comment_index')->middleware('auth');
 Route::post('/comment_store', 'CommentController@store')->name('comment_store')->middleware('auth');
-Route::put('/comment_edit', 'CommentController@update')->name('comment_update')->middleware('auth');
+Route::post('/comment_update', 'CommentController@update')->name('comment_update')->middleware('auth');
 Route::post('/comment_delete', 'CommentController@destroy')->name('comment_destroy')->middleware('auth');
