@@ -68,8 +68,5 @@ class CommentController extends Controller
     {
         $comment = Comment::findOrFail($request->comment_id);
         $comment->delete();
-        
-        $comments = Comment::all();
-        return view('comment/index', compact('comments'));
     }
 }

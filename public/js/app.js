@@ -2022,7 +2022,8 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common = {
     },
     deleteComment: function deleteComment(commentId) {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/comment_delete', {
-        comment_id: commentId
+        comment_id: commentId,
+        question_id: this.id
       }).then(function (res) {
         return;
       })["catch"](function (error) {

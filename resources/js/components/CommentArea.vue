@@ -109,7 +109,8 @@ export default {
         },
         deleteComment(commentId) {
             axios.post('http://127.0.0.1:8000/comment_delete',{
-                comment_id: commentId
+                comment_id: commentId,
+                question_id: this.id
             })
             .then((res)=>{
                 return;
