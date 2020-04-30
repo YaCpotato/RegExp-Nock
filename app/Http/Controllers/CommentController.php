@@ -16,7 +16,16 @@ class CommentController extends Controller
      */
     public function index(Request $request)
     {
+        $userId = \Auth::user()->id;
         $comments = Comment::query()->where('question_id',$request->question_id)->get(); 
+
+        foreach ($comments as $key => $comment) {
+            if ($comment['user_id'] != $userId) {
+                $comment['editable'] = false;
+            } else {
+                $comment['editable'] = true;
+            }
+        }
         return $comments;
     }
 

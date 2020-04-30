@@ -32903,43 +32903,49 @@ var render = function() {
                 _vm._s(comment.comment) +
                 "\n                "
             ),
-            _c("div", { staticStyle: { position: "absolute", right: "0" } }, [
-              _c(
-                "span",
-                {
-                  staticClass: "icon",
-                  on: {
-                    click: function($event) {
-                      return _vm.editComment(comment.id, comment.comment)
-                    }
-                  }
-                },
-                [
-                  _c("i", {
-                    staticClass: "fas fa-edit",
-                    attrs: { "area-hidden": "true" }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "span",
-                {
-                  staticClass: "icon",
-                  on: {
-                    click: function($event) {
-                      return _vm.deleteComment(comment.id)
-                    }
-                  }
-                },
-                [
-                  _c("i", {
-                    staticClass: "fas fa-trash",
-                    attrs: { "area-hidden": "true" }
-                  })
-                ]
-              )
-            ])
+            comment.editable
+              ? _c(
+                  "div",
+                  { staticStyle: { position: "absolute", right: "0" } },
+                  [
+                    _c(
+                      "span",
+                      {
+                        staticClass: "icon",
+                        on: {
+                          click: function($event) {
+                            return _vm.editComment(comment.id, comment.comment)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fas fa-edit",
+                          attrs: { "area-hidden": "true" }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        staticClass: "icon",
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteComment(comment.id)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fas fa-trash",
+                          attrs: { "area-hidden": "true" }
+                        })
+                      ]
+                    )
+                  ]
+                )
+              : _vm._e()
           ])
         }),
         0

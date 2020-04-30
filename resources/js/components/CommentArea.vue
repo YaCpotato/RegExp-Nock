@@ -10,7 +10,7 @@
                     <i class="fas fa-user"></i>
                 </span>
                 {{ comment.comment }}
-                <div style="position:absolute;right:0;">
+                <div v-if="comment.editable" style="position:absolute;right:0;">
                     <span class="icon" @click="editComment(comment.id,comment.comment)">
                         <i class="fas fa-edit" area-hidden="true"></i>
                     </span>
