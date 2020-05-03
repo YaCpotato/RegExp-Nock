@@ -12010,6 +12010,10 @@ label.panel-block:hover {
   padding: 3rem 1.5rem 6rem;
 }
 
+body {
+  background-color: #00d1b2;
+}
+
 .auth-card {
   padding: 16px;
   border-radius: 15px;

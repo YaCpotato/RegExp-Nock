@@ -8,6 +8,10 @@
 
 @import '~bulma/bulma';
 
+body {
+    background-color: $turquoise;
+}
+
 .auth-card　{
     padding: 16px;
     border-radius: 15px;
