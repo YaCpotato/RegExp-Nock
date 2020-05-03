@@ -5,7 +5,7 @@
             コメント
         </p>
         <div class="container">
-            <a v-for="comment in comments"  :key="comment.id" class="panel-block">
+            <a v-for="comment in comments"  :key="comment.id" class="panel-block comment-area">
                 <span class="panel-icon">
                     <i class="fas fa-user"></i>
                 </span>
