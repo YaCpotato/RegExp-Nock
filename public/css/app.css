@@ -12014,6 +12014,10 @@ body {
   background-color: #00d1b2;
 }
 
+.intro-and-button-area {
+  margin: 2rem;
+}
+
 .auth-card {
   padding: 16px;
   border-radius: 15px;
