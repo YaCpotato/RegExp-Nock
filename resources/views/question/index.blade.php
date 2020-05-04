@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<div class="container is-fluid">
-        <div class="intro-and-button-area box has-text-centered">
+<div class="main-index">
+        <div class="intro-and-button-area has-text-centered">
             <p>
                 RegExpノックセンターへようこそ<br>正規表現に関する日常生活での質問を投げたり、問題として出したり、<br>腕試しで挑戦したりできるよ！
             </p>

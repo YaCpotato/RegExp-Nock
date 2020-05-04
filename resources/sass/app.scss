@@ -8,12 +8,12 @@
 
 @import '~bulma/bulma';
 
-body {
+.main-index {
     background-color: $turquoise;
 }
 
 .intro-and-button-area {
-    margin:2rem;
+    background-color: $white;
 }
 .auth-card　{
     padding: 16px;

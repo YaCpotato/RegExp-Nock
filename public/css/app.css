@@ -12010,12 +12010,13 @@ label.panel-block:hover {
   padding: 3rem 1.5rem 6rem;
 }
 
-body {
+.main-index {
   background-color: #00d1b2;
 }
 
 .intro-and-button-area {
-  margin: 2rem;
+  min-height: 20%;
+  background-color: white;
 }
 
 .auth-card {
